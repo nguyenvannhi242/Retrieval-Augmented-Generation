@@ -87,3 +87,22 @@ Nhật ký ghi lại quá trình thiết kế, triển khai, kiểm thử và t�
   - **Phân tích quan trọng**:
     - Khi truy vấn bằng tiếng Việt trên mô hình nhúng đơn ngữ tiếng Anh (`bge-small-en-v1.5`), MRR@5 sụt giảm rõ rệt từ 0.884 xuống 0.646 (-23.9 điểm) và Hit Rate giảm từ 96.7% xuống 85.0%.
     - Các câu hỏi ngoài phạm vi (unanswerable) vẫn có điểm tương đồng cosine trung bình lên tới 0.6419 (cao nhất 0.7047), chứng minh rằng điểm similarity cao không đồng nghĩa với câu trả lời đúng, và cần có cơ chế lọc ngưỡng hoặc phân loại truy vấn.
+
+---
+
+## 📌 Phase 5: Tích hợp Local LLM qua Ollama (Gemma 2 2B) & Xác thực Trích dẫn Nguồn
+
+- **Trạng thái**: Hoàn thành (DONE)
+- **Thời gian**: 2026-10-12
+- **Thực hiện**:
+  - Tải và cấu hình mô hình local qua Ollama: `gemma2:2b` (~1.6 GB).
+  - Xây dựng module `generation/prompts.py` định nghĩa `SYSTEM_PROMPT` với 6 nguyên tắc kỹ thuật nghiêm ngặt (chỉ dùng ngữ cảnh cung cấp, không bịa đặt API, trích dẫn nguồn `[S1]`, trả lời đúng ngôn ngữ câu hỏi).
+  - Xây dựng module `generation/generator.py`:
+    - Định dạng ngữ cảnh từ top 5 chunks theo cấu trúc `[S{i}]` kèm Tiêu đề, URL và nội dung.
+    - Kết nối `ollama.chat` thực hiện sinh câu trả lời.
+    - Bộ bóc tách và xác thực trích dẫn (`validate_citations`): Quét toàn bộ thẻ `[S{i}]` trong câu trả lời, ánh xạ sang thông tin metadata thực tế của chunk tương ứng (tiêu đề, URL canonical, file nguồn, score), phát hiện và cảnh báo các trích dẫn bịa đặt (`hallucinated_citations`).
+    - Lớp `RAGPipeline` liên kết trực tiếp với `DocumentRetriever` từ `retrieval/search.py` để thực hiện toàn bộ luồng RAG đầu cuối.
+  - Viết bộ unit test `tests/test_generation.py` (5 tests) kiểm tra prompt rules, context builder, citation validator, và xử lý khi không có chunks.
+- **Kết quả thực nghiệm**:
+  - Thử nghiệm câu hỏi tiếng Việt: *"Làm thế nào để khai báo query parameters trong FastAPI?"* -> Trả lời bằng tiếng Việt chính xác, trích dẫn chuẩn xác `[S2]`, `[S3]`, `[S5]` tương ứng với `tutorial/query-param-models.md`, `reference/parameters.md`, `tutorial/body.md`.
+  - Thử nghiệm câu hỏi: *"Làm thế nào để chạy ứng dụng FastAPI trong Docker container?"* -> Trả lời ngắn gọn, chuẩn xác kèm trích dẫn `[S4]` tới `deployment/docker.md#build-the-docker-image`.
