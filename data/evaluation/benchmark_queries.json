@@ -1,0 +1,58 @@
+[
+  {
+    "id": "q1",
+    "question": "Làm thế nào để khai báo query parameters với giá trị mặc định trong FastAPI?",
+    "expected_doc_slug": "tutorial_query-params",
+    "expected_keywords": ["query parameter", "default value", "optional"],
+    "category": "basics"
+  },
+  {
+    "id": "q2",
+    "question": "Cách tạo background tasks để xử lý tác vụ ngầm sau khi trả về response?",
+    "expected_doc_slug": "tutorial_background-tasks",
+    "expected_keywords": ["BackgroundTasks", "background_tasks.add_task"],
+    "category": "advanced"
+  },
+  {
+    "id": "q3",
+    "question": "Làm sao để xác thực bảo mật người dùng bằng OAuth2 và Password Bearer token trong FastAPI?",
+    "expected_doc_slug": "tutorial_security_simple-oauth2",
+    "expected_keywords": ["OAuth2PasswordBearer", "security", "token"],
+    "category": "security"
+  },
+  {
+    "id": "q4",
+    "question": "Cách upload file hoặc nhận UploadFile trong FastAPI?",
+    "expected_doc_slug": "tutorial_request-files",
+    "expected_keywords": ["UploadFile", "File"],
+    "category": "files"
+  },
+  {
+    "id": "q5",
+    "question": "Làm thế nào để đóng gói và triển khai ứng dụng FastAPI bằng Docker container?",
+    "expected_doc_slug": "deployment_docker",
+    "expected_keywords": ["Dockerfile", "docker run", "container"],
+    "category": "deployment"
+  },
+  {
+    "id": "q6",
+    "question": "Làm cách nào để cấu hình CORSMiddleware cho phép frontend gọi API?",
+    "expected_doc_slug": "tutorial_cors",
+    "expected_keywords": ["CORSMiddleware", "allow_origins"],
+    "category": "middleware"
+  },
+  {
+    "id": "q7",
+    "question": "Cách xử lý ngoại lệ và trả về HTTPException với custom status code?",
+    "expected_doc_slug": "tutorial_handling-errors",
+    "expected_keywords": ["HTTPException", "status_code"],
+    "category": "errors"
+  },
+  {
+    "id": "q8",
+    "question": "Làm thế nào để sử dụng Dependency Injection với Depends trong FastAPI?",
+    "expected_doc_slug": "tutorial_dependencies_index",
+    "expected_keywords": ["Depends", "dependency"],
+    "category": "dependencies"
+  }
+]
