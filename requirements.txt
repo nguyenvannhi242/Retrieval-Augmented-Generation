@@ -1,0 +1,17 @@
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+streamlit>=1.38.0
+chromadb>=0.5.5
+sentence-transformers>=3.1.0
+langchain>=0.2.14
+langchain-text-splitters>=0.2.2
+langchain-community>=0.2.12
+beautifulsoup4>=4.12.3
+requests>=2.32.3
+pydantic>=2.8.2
+tqdm>=4.66.5
+ollama>=0.3.3
+pypdf>=4.3.1
+markdown>=3.7
+numpy>=1.26.0
+python-dotenv>=1.0.1
