@@ -29,13 +29,15 @@ wheels/
 venv/
 ENV/
 
-# Chroma / Vector Database data (keep directory structure with .gitkeep if needed, ignore large db files or keep local)
-# data/processed/chroma_db/
+# Chroma / Vector Database data
+data/processed/chroma_db/
 .chroma/
 
-# Raw cloned repos if large
+# Raw cloned repos and docs
 data/raw/fastapi_repo/
 data/raw/cpython_repo/
+data/raw/fastapi_docs/
+data/raw/_fastapi_clone_temp/
 
 # Cache & Hugging Face
 .cache/
