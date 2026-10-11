@@ -54,3 +54,36 @@ Nhật ký ghi lại quá trình thiết kế, triển khai, kiểm thử và t�
   - **Query 2**: *"Làm thế nào để chạy ứng dụng FastAPI trong Docker container?"* -> Trả về chính xác các mục trong `deployment/docker.md` và `deployment/concepts.md` (Top score: ~0.69).
   - **Query 3**: *"Làm sao để cấu hình background tasks trong FastAPI?"* -> Trả về chính xác `tutorial/background-tasks.md` và `reference/background.md` (Top score: ~0.68).
   - Tốc độ truy vấn: Dưới 150ms sau khi tải mô hình.
+
+---
+
+## 📌 Phase 4: Xây dựng Bộ Benchmark & Đo lường Baseline Retrieval
+
+- **Trạng thái**: Hoàn thành (DONE)
+- **Thời gian**: 2026-10-12
+- **Thực hiện**:
+  - Xây dựng bộ ground truth benchmark `data/evaluation/benchmark_queries.json` gồm **60 câu hỏi** đa dạng:
+    - 10 câu tra cứu khái niệm & API (factual/conceptual, English).
+    - 15 câu quy trình & ví dụ code (procedural, English).
+    - 5 câu kết hợp nhiều tài liệu (multi_source, English).
+    - 20 câu cross-lingual (tiếng Việt truy vấn corpus tiếng Anh).
+    - 10 câu unanswerable / out-of-scope (câu hỏi ngoài phạm vi như Django ORM, React Redux, Spring Boot, Solidity).
+  - Xây dựng pipeline đo lường `evaluation/evaluate_retrieval.py` tính toán các metric ở cấp **Source file**:
+    - **Recall@5**: Tỷ lệ các nguồn tài liệu liên quan xuất hiện trong top 5.
+    - **MRR@5**: Điểm trung bình nghịch đảo thứ hạng của nguồn đúng đầu tiên ($1/r$ với $r \le 5$).
+    - **Hit Rate@5**: Xác suất có ít nhất 1 nguồn tài liệu chính xác trong top 5.
+    - **Latency**: Đo lường thời gian truy xuất (mean, median, p95).
+    - Tách riêng phân tích giữa tiếng Anh và tiếng Việt, cùng phân tích điểm tương đồng trên câu hỏi out-of-domain.
+  - Xuất báo cáo baseline chi tiết tại `data/evaluation/retrieval_baseline.json`.
+- **Kết quả Baseline đo lường (`BAAI/bge-small-en-v1.5`)**:
+  - **Overall (50 câu hỏi answerable)**:
+    - Recall@5: **85.67%**
+    - MRR@5: **0.7890**
+    - Hit Rate@5: **92.00%**
+    - Median Latency: **16.1 ms** (Mean: **16.4 ms**)
+  - **Tách theo ngôn ngữ**:
+    - **English (n=30)**: Recall@5 = **89.44%**, MRR@5 = **0.8844**, Hit Rate@5 = **96.67%**, Median Latency = **15.6 ms**
+    - **Vietnamese Cross-lingual (n=20)**: Recall@5 = **80.00%**, MRR@5 = **0.6458**, Hit Rate@5 = **85.00%**, Median Latency = **16.9 ms**
+  - **Phân tích quan trọng**:
+    - Khi truy vấn bằng tiếng Việt trên mô hình nhúng đơn ngữ tiếng Anh (`bge-small-en-v1.5`), MRR@5 sụt giảm rõ rệt từ 0.884 xuống 0.646 (-23.9 điểm) và Hit Rate giảm từ 96.7% xuống 85.0%.
+    - Các câu hỏi ngoài phạm vi (unanswerable) vẫn có điểm tương đồng cosine trung bình lên tới 0.6419 (cao nhất 0.7047), chứng minh rằng điểm similarity cao không đồng nghĩa với câu trả lời đúng, và cần có cơ chế lọc ngưỡng hoặc phân loại truy vấn.

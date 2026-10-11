@@ -1,0 +1,1733 @@
+{
+  "embedding_model": {
+    "name": "BAAI/bge-small-en-v1.5",
+    "architecture": "bge-small-en-v1.5",
+    "distance_metric": "cosine",
+    "vector_dimension": 384,
+    "query_instruction": "Represent this sentence for searching relevant passages: "
+  },
+  "chunking_config": {
+    "splitter": "MarkdownHeaderTextSplitter + RecursiveCharacterTextSplitter",
+    "chunk_size": 750,
+    "chunk_overlap": 100,
+    "headers_split": [
+      "#",
+      "##",
+      "###"
+    ]
+  },
+  "indexed_chunks_count": 1591,
+  "benchmark_summary": {
+    "total_queries": 60,
+    "answerable_queries": 50,
+    "unanswerable_queries": 10,
+    "languages": {
+      "en": 35,
+      "vi": 25
+    }
+  },
+  "metrics_overall_answerable": {
+    "count": 50,
+    "recall_at_5": 0.8567,
+    "mrr_at_5": 0.789,
+    "hit_rate_at_5": 0.92,
+    "latency_ms": {
+      "mean": 16.44,
+      "median": 16.14,
+      "p95": 19.07,
+      "min": 13.92,
+      "max": 19.16
+    }
+  },
+  "metrics_by_language": {
+    "english": {
+      "count": 30,
+      "recall_at_5": 0.8944,
+      "mrr_at_5": 0.8844,
+      "hit_rate_at_5": 0.9667,
+      "latency_ms": {
+        "mean": 15.64,
+        "median": 15.59,
+        "p95": 17.22,
+        "min": 13.92,
+        "max": 17.26
+      }
+    },
+    "vietnamese": {
+      "count": 20,
+      "recall_at_5": 0.8,
+      "mrr_at_5": 0.6458,
+      "hit_rate_at_5": 0.85,
+      "latency_ms": {
+        "mean": 17.1,
+        "median": 16.85,
+        "p95": 19.11,
+        "min": 15.57,
+        "max": 19.11
+      }
+    }
+  },
+  "metrics_by_category": {
+    "cross_lingual": {
+      "count": 20,
+      "recall_at_5": 0.8,
+      "mrr_at_5": 0.6458,
+      "hit_rate_at_5": 0.85,
+      "latency_ms": {
+        "mean": 17.1,
+        "median": 16.85,
+        "p95": 19.11,
+        "min": 15.57,
+        "max": 19.11
+      }
+    },
+    "factual": {
+      "count": 10,
+      "recall_at_5": 0.9,
+      "mrr_at_5": 0.82,
+      "hit_rate_at_5": 0.9,
+      "latency_ms": {
+        "mean": 15.73,
+        "median": 15.74,
+        "p95": 17.26,
+        "min": 13.92,
+        "max": 17.26
+      }
+    },
+    "multi_source": {
+      "count": 5,
+      "recall_at_5": 0.5667,
+      "mrr_at_5": 1.0,
+      "hit_rate_at_5": 1.0,
+      "latency_ms": {
+        "mean": 16.09,
+        "median": 16.13,
+        "p95": 17.19,
+        "min": 14.65,
+        "max": 17.19
+      }
+    },
+    "procedural": {
+      "count": 15,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.8889,
+      "hit_rate_at_5": 1.0,
+      "latency_ms": {
+        "mean": 15.42,
+        "median": 15.46,
+        "p95": 16.8,
+        "min": 13.93,
+        "max": 16.8
+      }
+    }
+  },
+  "unanswerable_analysis": {
+    "count": 10,
+    "mean_top_similarity": 0.6419,
+    "max_top_similarity": 0.7047,
+    "min_top_similarity": 0.5626
+  },
+  "detailed_query_results": [
+    {
+      "query_id": "q001",
+      "question": "What is the difference between concurrency and parallelism in FastAPI async?",
+      "language": "en",
+      "category": "factual",
+      "is_unanswerable": false,
+      "latency_ms": 17.26250000137952,
+      "expected_sources": [
+        "fastapi/docs/en/docs/async.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/async.md",
+        "fastapi/docs/en/docs/async.md",
+        "fastapi/docs/en/docs/async.md",
+        "fastapi/docs/en/docs/async.md",
+        "fastapi/docs/en/docs/async.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/async.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8186317682266235
+    },
+    {
+      "query_id": "q002",
+      "question": "How do standard Python type hints help FastAPI generate OpenAPI schemas and validation?",
+      "language": "en",
+      "category": "factual",
+      "is_unanswerable": false,
+      "latency_ms": 16.098100000817794,
+      "expected_sources": [
+        "fastapi/docs/en/docs/python-types.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/python-types.md",
+        "fastapi/docs/en/docs/history-design-future.md",
+        "fastapi/docs/en/docs/python-types.md",
+        "fastapi/docs/en/docs/tutorial/body.md",
+        "fastapi/docs/en/docs/alternatives.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/python-types.md",
+        "fastapi/docs/en/docs/history-design-future.md",
+        "fastapi/docs/en/docs/tutorial/body.md",
+        "fastapi/docs/en/docs/alternatives.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8599015474319458
+    },
+    {
+      "query_id": "q003",
+      "question": "What does the response_model parameter in path operations do?",
+      "language": "en",
+      "category": "factual",
+      "is_unanswerable": false,
+      "latency_ms": 15.57650000177091,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/response-model.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/response-model.md",
+        "fastapi/docs/en/docs/tutorial/response-model.md",
+        "fastapi/docs/en/docs/advanced/additional-responses.md",
+        "fastapi/docs/en/docs/advanced/response-directly.md",
+        "fastapi/docs/en/docs/tutorial/response-model.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/response-model.md",
+        "fastapi/docs/en/docs/advanced/additional-responses.md",
+        "fastapi/docs/en/docs/advanced/response-directly.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8287647366523743
+    },
+    {
+      "query_id": "q004",
+      "question": "What is OAuth2PasswordBearer in FastAPI security?",
+      "language": "en",
+      "category": "factual",
+      "is_unanswerable": false,
+      "latency_ms": 16.569899999012705,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/security/first-steps.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/security/first-steps.md",
+        "fastapi/docs/en/docs/reference/security/index.md",
+        "fastapi/docs/en/docs/reference/security/index.md",
+        "fastapi/docs/en/docs/tutorial/security/first-steps.md",
+        "fastapi/docs/en/docs/tutorial/security/simple-oauth2.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/security/first-steps.md",
+        "fastapi/docs/en/docs/reference/security/index.md",
+        "fastapi/docs/en/docs/tutorial/security/simple-oauth2.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8835674524307251
+    },
+    {
+      "query_id": "q005",
+      "question": "What is the role of BackgroundTasks in FastAPI responses?",
+      "language": "en",
+      "category": "factual",
+      "is_unanswerable": false,
+      "latency_ms": 15.434699998877477,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/background-tasks.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/background-tasks.md",
+        "fastapi/docs/en/docs/tutorial/background-tasks.md",
+        "fastapi/docs/en/docs/tutorial/background-tasks.md",
+        "fastapi/docs/en/docs/reference/background.md",
+        "fastapi/docs/en/docs/advanced/advanced-dependencies.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/background-tasks.md",
+        "fastapi/docs/en/docs/reference/background.md",
+        "fastapi/docs/en/docs/advanced/advanced-dependencies.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8252882957458496
+    },
+    {
+      "query_id": "q006",
+      "question": "How does FastAPI handle dependency injection using Depends?",
+      "language": "en",
+      "category": "factual",
+      "is_unanswerable": false,
+      "latency_ms": 13.924700000643497,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/dependencies/index.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/reference/dependencies.md",
+        "fastapi/docs/en/docs/features.md",
+        "fastapi/docs/en/docs/index.md",
+        "fastapi/docs/en/docs/advanced/advanced-dependencies.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/index.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/reference/dependencies.md",
+        "fastapi/docs/en/docs/features.md",
+        "fastapi/docs/en/docs/index.md",
+        "fastapi/docs/en/docs/advanced/advanced-dependencies.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/index.md"
+      ],
+      "first_relevant_rank": 5,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.2,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.833594560623169
+    },
+    {
+      "query_id": "q007",
+      "question": "What is CORSMiddleware and why is it needed for frontend clients?",
+      "language": "en",
+      "category": "factual",
+      "is_unanswerable": false,
+      "latency_ms": 16.04600000064238,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/cors.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/cors.md",
+        "fastapi/docs/en/docs/tutorial/cors.md",
+        "fastapi/docs/en/docs/tutorial/cors.md",
+        "fastapi/docs/en/docs/reference/middleware.md",
+        "fastapi/docs/en/docs/tutorial/cors.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/cors.md",
+        "fastapi/docs/en/docs/reference/middleware.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.7354296445846558
+    },
+    {
+      "query_id": "q008",
+      "question": "What is the difference between UploadFile and bytes when receiving uploaded files?",
+      "language": "en",
+      "category": "factual",
+      "is_unanswerable": false,
+      "latency_ms": 15.610999998898478,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/request-files.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/reference/uploadfile.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/reference/uploadfile.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8104822039604187
+    },
+    {
+      "query_id": "q009",
+      "question": "What is APIRouter used for in large FastAPI applications?",
+      "language": "en",
+      "category": "factual",
+      "is_unanswerable": false,
+      "latency_ms": 14.936400002625305,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md",
+        "fastapi/docs/en/docs/reference/apirouter.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md",
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md",
+        "fastapi/docs/en/docs/reference/apirouter.md",
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md",
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md",
+        "fastapi/docs/en/docs/reference/apirouter.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8090579509735107
+    },
+    {
+      "query_id": "q010",
+      "question": "What is the default status code returned by FastAPI endpoints and how to customize it?",
+      "language": "en",
+      "category": "factual",
+      "is_unanswerable": false,
+      "latency_ms": 15.859399998589652,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/response-status-code.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/additional-status-codes.md",
+        "fastapi/docs/en/docs/advanced/response-change-status-code.md",
+        "fastapi/docs/en/docs/tutorial/path-operation-configuration.md",
+        "fastapi/docs/en/docs/reference/status.md",
+        "fastapi/docs/en/docs/how-to/authentication-error-status-code.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/additional-status-codes.md",
+        "fastapi/docs/en/docs/advanced/response-change-status-code.md",
+        "fastapi/docs/en/docs/tutorial/path-operation-configuration.md",
+        "fastapi/docs/en/docs/reference/status.md",
+        "fastapi/docs/en/docs/how-to/authentication-error-status-code.md"
+      ],
+      "first_relevant_rank": null,
+      "recall_at_5": 0.0,
+      "mrr_at_5": 0.0,
+      "hit_at_5": 0.0,
+      "top_similarity": 0.8634933233261108
+    },
+    {
+      "query_id": "q011",
+      "question": "How do I declare query parameters with default values in FastAPI?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 14.709600000060163,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/query-params.md",
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/path-params-numeric-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-params.md",
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/path-params-numeric-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-params.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8674408197402954
+    },
+    {
+      "query_id": "q012",
+      "question": "How to validate string length and regular expressions in Query parameters?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 15.442799998709233,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8279894590377808
+    },
+    {
+      "query_id": "q013",
+      "question": "How can I run a FastAPI application in a Docker container?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 15.55949999965378,
+      "expected_sources": [
+        "fastapi/docs/en/docs/deployment/docker.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/deployment/server-workers.md",
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/fastapi-cli.md",
+        "fastapi/docs/en/docs/deployment/docker.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/deployment/server-workers.md",
+        "fastapi/docs/en/docs/fastapi-cli.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.814323902130127
+    },
+    {
+      "query_id": "q014",
+      "question": "How to raise an HTTPException with custom status code and detail message?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 15.19410000037169,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/handling-errors.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/handling-errors.md",
+        "fastapi/docs/en/docs/advanced/security/oauth2-scopes.md",
+        "fastapi/docs/en/docs/tutorial/handling-errors.md",
+        "fastapi/docs/en/docs/tutorial/handling-errors.md",
+        "fastapi/docs/en/docs/reference/exceptions.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/handling-errors.md",
+        "fastapi/docs/en/docs/advanced/security/oauth2-scopes.md",
+        "fastapi/docs/en/docs/reference/exceptions.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8021767139434814
+    },
+    {
+      "query_id": "q015",
+      "question": "How to schedule background tasks using BackgroundTasks.add_task in a path operation?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 15.985800000635209,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/background-tasks.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/reference/background.md",
+        "fastapi/docs/en/docs/tutorial/background-tasks.md",
+        "fastapi/docs/en/docs/tutorial/background-tasks.md",
+        "fastapi/docs/en/docs/tutorial/background-tasks.md",
+        "fastapi/docs/en/docs/tutorial/background-tasks.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/reference/background.md",
+        "fastapi/docs/en/docs/tutorial/background-tasks.md"
+      ],
+      "first_relevant_rank": 2,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.5,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8623055815696716
+    },
+    {
+      "query_id": "q016",
+      "question": "How to mount static files in FastAPI using StaticFiles?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 13.931500001490349,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/static-files.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/static-files.md",
+        "fastapi/docs/en/docs/reference/staticfiles.md",
+        "fastapi/docs/en/docs/advanced/templates.md",
+        "fastapi/docs/en/docs/tutorial/static-files.md",
+        "fastapi/docs/en/docs/how-to/custom-docs-ui-assets.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/static-files.md",
+        "fastapi/docs/en/docs/reference/staticfiles.md",
+        "fastapi/docs/en/docs/advanced/templates.md",
+        "fastapi/docs/en/docs/how-to/custom-docs-ui-assets.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8628681898117065
+    },
+    {
+      "query_id": "q017",
+      "question": "How to implement JWT authentication and generate bearer tokens in FastAPI?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 16.073399998276727,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/security/oauth2-jwt.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/security/first-steps.md",
+        "fastapi/docs/en/docs/tutorial/security/first-steps.md",
+        "fastapi/docs/en/docs/tutorial/security/oauth2-jwt.md",
+        "fastapi/docs/en/docs/tutorial/security/simple-oauth2.md",
+        "fastapi/docs/en/docs/tutorial/security/oauth2-jwt.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/security/first-steps.md",
+        "fastapi/docs/en/docs/tutorial/security/oauth2-jwt.md",
+        "fastapi/docs/en/docs/tutorial/security/simple-oauth2.md"
+      ],
+      "first_relevant_rank": 3,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.3333333333333333,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8043199181556702
+    },
+    {
+      "query_id": "q018",
+      "question": "How to write tests for FastAPI endpoints using TestClient and pytest?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 15.462600000319071,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/testing.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/testing.md",
+        "fastapi/docs/en/docs/tutorial/testing.md",
+        "fastapi/docs/en/docs/advanced/async-tests.md",
+        "fastapi/docs/en/docs/tutorial/testing.md",
+        "fastapi/docs/en/docs/advanced/async-tests.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/testing.md",
+        "fastapi/docs/en/docs/advanced/async-tests.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8440945148468018
+    },
+    {
+      "query_id": "q019",
+      "question": "How to use dependencies with yield to manage database sessions or cleanup?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 15.15599999765982,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md",
+        "fastapi/docs/en/docs/advanced/advanced-dependencies.md",
+        "fastapi/docs/en/docs/tutorial/sql-databases.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md",
+        "fastapi/docs/en/docs/advanced/advanced-dependencies.md",
+        "fastapi/docs/en/docs/tutorial/sql-databases.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.838369607925415
+    },
+    {
+      "query_id": "q020",
+      "question": "How to handle WebSockets connections for real-time messaging in FastAPI?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 15.091600002051564,
+      "expected_sources": [
+        "fastapi/docs/en/docs/advanced/websockets.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/websockets.md",
+        "fastapi/docs/en/docs/advanced/websockets.md",
+        "fastapi/docs/en/docs/advanced/websockets.md",
+        "fastapi/docs/en/docs/advanced/websockets.md",
+        "fastapi/docs/en/docs/advanced/websockets.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/websockets.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.815658688545227
+    },
+    {
+      "query_id": "q021",
+      "question": "How to declare request headers parameters using Header in FastAPI?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 15.502599999308586,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/header-params.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/header-params.md",
+        "fastapi/docs/en/docs/alternatives.md",
+        "fastapi/docs/en/docs/tutorial/header-params.md",
+        "fastapi/docs/en/docs/advanced/using-request-directly.md",
+        "fastapi/docs/en/docs/tutorial/body.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/header-params.md",
+        "fastapi/docs/en/docs/alternatives.md",
+        "fastapi/docs/en/docs/advanced/using-request-directly.md",
+        "fastapi/docs/en/docs/tutorial/body.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8529233336448669
+    },
+    {
+      "query_id": "q022",
+      "question": "How to declare cookie parameters using Cookie in path operation functions?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 14.7467000024335,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/cookie-params.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/cookie-params.md",
+        "fastapi/docs/en/docs/tutorial/cookie-params.md",
+        "fastapi/docs/en/docs/tutorial/header-params.md",
+        "fastapi/docs/en/docs/tutorial/header-params.md",
+        "fastapi/docs/en/docs/tutorial/path-params.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/cookie-params.md",
+        "fastapi/docs/en/docs/tutorial/header-params.md",
+        "fastapi/docs/en/docs/tutorial/path-params.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8811641931533813
+    },
+    {
+      "query_id": "q023",
+      "question": "How to read and parse form data using Form in FastAPI endpoints?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 16.79819999844767,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/request-forms.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/request-forms.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/index.md",
+        "fastapi/docs/en/docs/advanced/using-request-directly.md",
+        "fastapi/docs/en/docs/tutorial/response-model.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/request-forms.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/index.md",
+        "fastapi/docs/en/docs/advanced/using-request-directly.md",
+        "fastapi/docs/en/docs/tutorial/response-model.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.805815577507019
+    },
+    {
+      "query_id": "q024",
+      "question": "How to configure application settings and environment variables with pydantic-settings?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 15.756100001453888,
+      "expected_sources": [
+        "fastapi/docs/en/docs/advanced/settings.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/settings.md",
+        "fastapi/docs/en/docs/advanced/settings.md",
+        "fastapi/docs/en/docs/advanced/settings.md",
+        "fastapi/docs/en/docs/advanced/settings.md",
+        "fastapi/docs/en/docs/advanced/settings.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/settings.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8441658020019531
+    },
+    {
+      "query_id": "q025",
+      "question": "How to mount sub-applications in FastAPI using app.mount?",
+      "language": "en",
+      "category": "procedural",
+      "is_unanswerable": false,
+      "latency_ms": 15.904399999271845,
+      "expected_sources": [
+        "fastapi/docs/en/docs/advanced/sub-applications.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/behind-a-proxy.md",
+        "fastapi/docs/en/docs/advanced/sub-applications.md",
+        "fastapi/docs/en/docs/advanced/sub-applications.md",
+        "fastapi/docs/en/docs/advanced/sub-applications.md",
+        "fastapi/docs/en/docs/advanced/sub-applications.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/behind-a-proxy.md",
+        "fastapi/docs/en/docs/advanced/sub-applications.md"
+      ],
+      "first_relevant_rank": 2,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.5,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.9047383069992065
+    },
+    {
+      "query_id": "q026",
+      "question": "How to declare body, path and query parameters all in the same endpoint function?",
+      "language": "en",
+      "category": "multi_source",
+      "is_unanswerable": false,
+      "latency_ms": 16.126300000905758,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/body.md",
+        "fastapi/docs/en/docs/tutorial/path-params.md",
+        "fastapi/docs/en/docs/tutorial/query-params.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/body.md",
+        "fastapi/docs/en/docs/tutorial/path-params-numeric-validations.md",
+        "fastapi/docs/en/docs/tutorial/body-multiple-params.md",
+        "fastapi/docs/en/docs/tutorial/body-multiple-params.md",
+        "fastapi/docs/en/docs/tutorial/body.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/body.md",
+        "fastapi/docs/en/docs/tutorial/path-params-numeric-validations.md",
+        "fastapi/docs/en/docs/tutorial/body-multiple-params.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 0.3333333333333333,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8259856104850769
+    },
+    {
+      "query_id": "q027",
+      "question": "How to accept both file uploads and form fields simultaneously in FastAPI?",
+      "language": "en",
+      "category": "multi_source",
+      "is_unanswerable": false,
+      "latency_ms": 16.015100001823157,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/request-forms-and-files.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/tutorial/request-forms.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/tutorial/request-forms-and-files.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/tutorial/request-form-models.md",
+        "fastapi/docs/en/docs/tutorial/request-forms-and-files.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/tutorial/request-forms-and-files.md",
+        "fastapi/docs/en/docs/tutorial/request-form-models.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 0.6666666666666666,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8055759072303772
+    },
+    {
+      "query_id": "q028",
+      "question": "How to structure and modularize a large application with APIRouter and multiple routers?",
+      "language": "en",
+      "category": "multi_source",
+      "is_unanswerable": false,
+      "latency_ms": 14.651200002845144,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md",
+        "fastapi/docs/en/docs/reference/apirouter.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md",
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md",
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md",
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md",
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 0.5,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.7791069746017456
+    },
+    {
+      "query_id": "q029",
+      "question": "How to deploy FastAPI in production using Docker containers with worker processes?",
+      "language": "en",
+      "category": "multi_source",
+      "is_unanswerable": false,
+      "latency_ms": 16.453899999760324,
+      "expected_sources": [
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/deployment/server-workers.md",
+        "fastapi/docs/en/docs/deployment/concepts.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/deployment/server-workers.md",
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/deployment/server-workers.md",
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/deployment/server-workers.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/deployment/server-workers.md",
+        "fastapi/docs/en/docs/deployment/docker.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 0.6666666666666666,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8353941440582275
+    },
+    {
+      "query_id": "q030",
+      "question": "How to authenticate users with security dependencies and extract the current active user?",
+      "language": "en",
+      "category": "multi_source",
+      "is_unanswerable": false,
+      "latency_ms": 17.189299996971386,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/security/get-current-user.md",
+        "fastapi/docs/en/docs/tutorial/security/simple-oauth2.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/index.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/security/simple-oauth2.md",
+        "fastapi/docs/en/docs/tutorial/security/get-current-user.md",
+        "fastapi/docs/en/docs/advanced/security/oauth2-scopes.md",
+        "fastapi/docs/en/docs/tutorial/security/get-current-user.md",
+        "fastapi/docs/en/docs/tutorial/security/simple-oauth2.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/security/simple-oauth2.md",
+        "fastapi/docs/en/docs/tutorial/security/get-current-user.md",
+        "fastapi/docs/en/docs/advanced/security/oauth2-scopes.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 0.6666666666666666,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.8471459746360779
+    },
+    {
+      "query_id": "q031",
+      "question": "Làm thế nào để khai báo query parameters trong FastAPI?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 15.566300000500632,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/query-params.md",
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-param-models.md",
+        "fastapi/docs/en/docs/reference/parameters.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/classes-as-dependencies.md",
+        "fastapi/docs/en/docs/tutorial/body.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-param-models.md",
+        "fastapi/docs/en/docs/reference/parameters.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/classes-as-dependencies.md",
+        "fastapi/docs/en/docs/tutorial/body.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 0.5,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.6915346384048462
+    },
+    {
+      "query_id": "q032",
+      "question": "Cách kiểm tra độ dài chuỗi và biểu thức chính quy regex cho query parameter?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 16.569999999774154,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-params.md",
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/query-params-str-validations.md",
+        "fastapi/docs/en/docs/tutorial/query-params.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.7305588126182556
+    },
+    {
+      "query_id": "q033",
+      "question": "Làm thế nào để đóng gói và triển khai ứng dụng FastAPI trong Docker container?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 16.821599998365855,
+      "expected_sources": [
+        "fastapi/docs/en/docs/deployment/docker.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/deployment/concepts.md",
+        "fastapi/docs/en/docs/deployment/server-workers.md",
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/deployment/docker.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/deployment/concepts.md",
+        "fastapi/docs/en/docs/deployment/server-workers.md",
+        "fastapi/docs/en/docs/deployment/docker.md"
+      ],
+      "first_relevant_rank": 3,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.3333333333333333,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.6666243076324463
+    },
+    {
+      "query_id": "q034",
+      "question": "Cách tạo background tasks để xử lý tác vụ ngầm sau khi trả về response?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 15.742800002044532,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/background-tasks.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/background-tasks.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md",
+        "fastapi/docs/en/docs/advanced/advanced-dependencies.md",
+        "fastapi/docs/en/docs/tutorial/background-tasks.md",
+        "fastapi/docs/en/docs/reference/background.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/background-tasks.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md",
+        "fastapi/docs/en/docs/advanced/advanced-dependencies.md",
+        "fastapi/docs/en/docs/reference/background.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.63265061378479
+    },
+    {
+      "query_id": "q035",
+      "question": "Làm sao để cấu hình CORSMiddleware cho phép frontend React hoặc Vue gọi API?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 17.094599999836646,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/cors.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/cors.md",
+        "fastapi/docs/en/docs/tutorial/frontend.md",
+        "fastapi/docs/en/docs/advanced/sub-applications.md",
+        "fastapi/docs/en/docs/index.md",
+        "fastapi/docs/en/docs/tutorial/cors.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/cors.md",
+        "fastapi/docs/en/docs/tutorial/frontend.md",
+        "fastapi/docs/en/docs/advanced/sub-applications.md",
+        "fastapi/docs/en/docs/index.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.694527268409729
+    },
+    {
+      "query_id": "q036",
+      "question": "Cách ném ngoại lệ HTTPException kèm theo status code và nội dung lỗi?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 16.54920000146376,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/handling-errors.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/handling-errors.md",
+        "fastapi/docs/en/docs/tutorial/response-status-code.md",
+        "fastapi/docs/en/docs/tutorial/path-operation-configuration.md",
+        "fastapi/docs/en/docs/tutorial/response-status-code.md",
+        "fastapi/docs/en/docs/tutorial/handling-errors.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/handling-errors.md",
+        "fastapi/docs/en/docs/tutorial/response-status-code.md",
+        "fastapi/docs/en/docs/tutorial/path-operation-configuration.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.6990274786949158
+    },
+    {
+      "query_id": "q037",
+      "question": "Làm thế nào để sử dụng cơ chế Dependency Injection với Depends trong FastAPI?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 15.762300001370022,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/dependencies/index.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/index.md",
+        "fastapi/docs/en/docs/features.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/index.md",
+        "fastapi/docs/en/docs/reference/dependencies.md",
+        "fastapi/docs/en/docs/advanced/security/oauth2-scopes.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/index.md",
+        "fastapi/docs/en/docs/features.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/index.md",
+        "fastapi/docs/en/docs/reference/dependencies.md",
+        "fastapi/docs/en/docs/advanced/security/oauth2-scopes.md"
+      ],
+      "first_relevant_rank": 3,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.3333333333333333,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.7032041549682617
+    },
+    {
+      "query_id": "q038",
+      "question": "Cách upload file đơn hoặc danh sách nhiều file bằng UploadFile?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 15.944099999614991,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/request-files.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/request-files.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.6452008485794067
+    },
+    {
+      "query_id": "q039",
+      "question": "Làm thế nào để cấu hình static files bằng StaticFiles trong FastAPI?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 16.14540000082343,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/static-files.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/reference/staticfiles.md",
+        "fastapi/docs/en/docs/tutorial/static-files.md",
+        "fastapi/docs/en/docs/advanced/templates.md",
+        "fastapi/docs/en/docs/tutorial/static-files.md",
+        "fastapi/docs/en/docs/tutorial/static-files.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/reference/staticfiles.md",
+        "fastapi/docs/en/docs/tutorial/static-files.md",
+        "fastapi/docs/en/docs/advanced/templates.md"
+      ],
+      "first_relevant_rank": 2,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.5,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.7449911832809448
+    },
+    {
+      "query_id": "q040",
+      "question": "Cách tạo và xác thực token JWT với OAuth2 trong FastAPI?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 16.876300000149058,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/security/oauth2-jwt.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/security/first-steps.md",
+        "fastapi/docs/en/docs/tutorial/security/first-steps.md",
+        "fastapi/docs/en/docs/reference/security/index.md",
+        "fastapi/docs/en/docs/reference/security/index.md",
+        "fastapi/docs/en/docs/advanced/security/oauth2-scopes.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/security/first-steps.md",
+        "fastapi/docs/en/docs/reference/security/index.md",
+        "fastapi/docs/en/docs/advanced/security/oauth2-scopes.md"
+      ],
+      "first_relevant_rank": null,
+      "recall_at_5": 0.0,
+      "mrr_at_5": 0.0,
+      "hit_at_5": 0.0,
+      "top_similarity": 0.7416641712188721
+    },
+    {
+      "query_id": "q041",
+      "question": "Cách viết kiểm thử tự động cho endpoint bằng TestClient và pytest?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 16.54679999774089,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/testing.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/async-tests.md",
+        "fastapi/docs/en/docs/tutorial/testing.md",
+        "fastapi/docs/en/docs/advanced/async-tests.md",
+        "fastapi/docs/en/docs/project-generation.md",
+        "fastapi/docs/en/docs/tutorial/testing.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/async-tests.md",
+        "fastapi/docs/en/docs/tutorial/testing.md",
+        "fastapi/docs/en/docs/project-generation.md"
+      ],
+      "first_relevant_rank": 2,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.5,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.654287576675415
+    },
+    {
+      "query_id": "q042",
+      "question": "Làm sao để giải phóng tài nguyên cơ sở dữ liệu bằng dependency có chứa yield?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 16.794499999377877,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md",
+        "fastapi/docs/en/docs/advanced/advanced-dependencies.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/sub-dependencies.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/dependencies/dependencies-with-yield.md",
+        "fastapi/docs/en/docs/advanced/advanced-dependencies.md",
+        "fastapi/docs/en/docs/tutorial/dependencies/sub-dependencies.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.6196949481964111
+    },
+    {
+      "query_id": "q043",
+      "question": "Cách thiết lập giao tiếp WebSocket real-time hai chiều trong FastAPI?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 18.684200000279816,
+      "expected_sources": [
+        "fastapi/docs/en/docs/advanced/websockets.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/websockets.md",
+        "fastapi/docs/en/docs/advanced/websockets.md",
+        "fastapi/docs/en/docs/advanced/websockets.md",
+        "fastapi/docs/en/docs/advanced/websockets.md",
+        "fastapi/docs/en/docs/advanced/websockets.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/websockets.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.732542872428894
+    },
+    {
+      "query_id": "q044",
+      "question": "Làm thế nào để cấu trúc dự án lớn bằng cách chia nhiều APIRouter con?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 16.901200000575045,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md",
+        "fastapi/docs/en/docs/reference/apirouter.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/cors.md",
+        "fastapi/docs/en/docs/advanced/settings.md",
+        "fastapi/docs/en/docs/tutorial/cors.md",
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md",
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/cors.md",
+        "fastapi/docs/en/docs/advanced/settings.md",
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md"
+      ],
+      "first_relevant_rank": 4,
+      "recall_at_5": 0.5,
+      "mrr_at_5": 0.25,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.48736417293548584
+    },
+    {
+      "query_id": "q045",
+      "question": "Khi nào nên dùng async def và khi nào dùng def thông thường trong FastAPI?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 18.991200002346886,
+      "expected_sources": [
+        "fastapi/docs/en/docs/async.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/index.md",
+        "fastapi/docs/en/docs/async.md",
+        "fastapi/docs/en/docs/about/index.md",
+        "fastapi/docs/en/docs/async.md",
+        "fastapi/docs/en/docs/async.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/index.md",
+        "fastapi/docs/en/docs/async.md",
+        "fastapi/docs/en/docs/about/index.md"
+      ],
+      "first_relevant_rank": 2,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.5,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.6881557703018188
+    },
+    {
+      "query_id": "q046",
+      "question": "Làm sao để lọc dữ liệu trả về bằng cách định nghĩa response_model?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 19.076599997788435,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/response-model.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/response-model.md",
+        "fastapi/docs/en/docs/tutorial/response-model.md",
+        "fastapi/docs/en/docs/advanced/additional-responses.md",
+        "fastapi/docs/en/docs/advanced/additional-responses.md",
+        "fastapi/docs/en/docs/tutorial/extra-models.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/response-model.md",
+        "fastapi/docs/en/docs/advanced/additional-responses.md",
+        "fastapi/docs/en/docs/tutorial/extra-models.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.6988124847412109
+    },
+    {
+      "query_id": "q047",
+      "question": "Cách nhận dữ liệu form thông qua Form thay vì JSON trong FastAPI?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 18.067400000290945,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/request-forms.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/about/index.md",
+        "fastapi/docs/en/docs/tutorial/body-multiple-params.md",
+        "fastapi/docs/en/docs/tutorial/path-params.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/tutorial/security/simple-oauth2.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/about/index.md",
+        "fastapi/docs/en/docs/tutorial/body-multiple-params.md",
+        "fastapi/docs/en/docs/tutorial/path-params.md",
+        "fastapi/docs/en/docs/tutorial/request-files.md",
+        "fastapi/docs/en/docs/tutorial/security/simple-oauth2.md"
+      ],
+      "first_relevant_rank": null,
+      "recall_at_5": 0.0,
+      "mrr_at_5": 0.0,
+      "hit_at_5": 0.0,
+      "top_similarity": 0.6529292464256287
+    },
+    {
+      "query_id": "q048",
+      "question": "Cách đọc giá trị Cookie gửi từ trình duyệt bằng Cookie parameter?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 17.505600000731647,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/cookie-params.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/cookie-params.md",
+        "fastapi/docs/en/docs/tutorial/cookie-params.md",
+        "fastapi/docs/en/docs/tutorial/cookie-params.md",
+        "fastapi/docs/en/docs/tutorial/cookie-param-models.md",
+        "fastapi/docs/en/docs/tutorial/cookie-param-models.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/cookie-params.md",
+        "fastapi/docs/en/docs/tutorial/cookie-param-models.md"
+      ],
+      "first_relevant_rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.6797964572906494
+    },
+    {
+      "query_id": "q049",
+      "question": "Làm thế nào để đọc custom HTTP Headers gửi lên từ client?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 17.351800001051743,
+      "expected_sources": [
+        "fastapi/docs/en/docs/tutorial/header-params.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/response-headers.md",
+        "fastapi/docs/en/docs/tutorial/header-params.md",
+        "fastapi/docs/en/docs/tutorial/middleware.md",
+        "fastapi/docs/en/docs/tutorial/handling-errors.md",
+        "fastapi/docs/en/docs/how-to/custom-docs-ui-assets.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/response-headers.md",
+        "fastapi/docs/en/docs/tutorial/header-params.md",
+        "fastapi/docs/en/docs/tutorial/middleware.md",
+        "fastapi/docs/en/docs/tutorial/handling-errors.md",
+        "fastapi/docs/en/docs/how-to/custom-docs-ui-assets.md"
+      ],
+      "first_relevant_rank": 2,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.5,
+      "hit_at_5": 1.0,
+      "top_similarity": 0.7164451479911804
+    },
+    {
+      "query_id": "q050",
+      "question": "Cách quản lý cấu hình và biến môi trường bằng BaseSettings trong FastAPI?",
+      "language": "vi",
+      "category": "cross_lingual",
+      "is_unanswerable": false,
+      "latency_ms": 19.107700001768535,
+      "expected_sources": [
+        "fastapi/docs/en/docs/advanced/settings.md"
+      ],
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/index.md",
+        "fastapi/docs/en/docs/reference/status.md",
+        "fastapi/docs/en/docs/about/index.md",
+        "fastapi/docs/en/docs/alternatives.md",
+        "fastapi/docs/en/docs/advanced/custom-response.md"
+      ],
+      "unique_retrieved_sources": [
+        "fastapi/docs/en/docs/index.md",
+        "fastapi/docs/en/docs/reference/status.md",
+        "fastapi/docs/en/docs/about/index.md",
+        "fastapi/docs/en/docs/alternatives.md",
+        "fastapi/docs/en/docs/advanced/custom-response.md"
+      ],
+      "first_relevant_rank": null,
+      "recall_at_5": 0.0,
+      "mrr_at_5": 0.0,
+      "hit_at_5": 0.0,
+      "top_similarity": 0.5883933305740356
+    },
+    {
+      "query_id": "q051",
+      "question": "How do I configure Django ORM models with migrations and foreign keys?",
+      "language": "en",
+      "category": "unanswerable",
+      "is_unanswerable": true,
+      "latency_ms": 18.630800001119496,
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/extra-models.md",
+        "fastapi/docs/en/docs/tutorial/extra-models.md",
+        "fastapi/docs/en/docs/tutorial/body-fields.md",
+        "fastapi/docs/en/docs/tutorial/body.md",
+        "fastapi/docs/en/docs/tutorial/security/get-current-user.md"
+      ],
+      "top_similarity": 0.7046977281570435,
+      "recall_at_5": null,
+      "mrr_at_5": null,
+      "hit_at_5": null
+    },
+    {
+      "query_id": "q052",
+      "question": "How to set up Apache Kafka consumer group with Spring Boot?",
+      "language": "en",
+      "category": "unanswerable",
+      "is_unanswerable": true,
+      "latency_ms": 16.811800000141375,
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/cors.md",
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/tutorial/cors.md",
+        "fastapi/docs/en/docs/deployment/concepts.md",
+        "fastapi/docs/en/docs/advanced/behind-a-proxy.md"
+      ],
+      "top_similarity": 0.5907741785049438,
+      "recall_at_5": null,
+      "mrr_at_5": null,
+      "hit_at_5": null
+    },
+    {
+      "query_id": "q053",
+      "question": "How to configure Ruby on Rails Active Record callbacks and validations?",
+      "language": "en",
+      "category": "unanswerable",
+      "is_unanswerable": true,
+      "latency_ms": 18.56670000051963,
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/body-fields.md",
+        "fastapi/docs/en/docs/advanced/opentelemetry.md",
+        "fastapi/docs/en/docs/tutorial/extra-models.md",
+        "fastapi/docs/en/docs/index.md",
+        "fastapi/docs/en/docs/advanced/settings.md"
+      ],
+      "top_similarity": 0.6661996245384216,
+      "recall_at_5": null,
+      "mrr_at_5": null,
+      "hit_at_5": null
+    },
+    {
+      "query_id": "q054",
+      "question": "How do I setup Angular route guards with RxJS observables?",
+      "language": "en",
+      "category": "unanswerable",
+      "is_unanswerable": true,
+      "latency_ms": 16.888699999981327,
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/behind-a-proxy.md",
+        "fastapi/docs/en/docs/advanced/security/oauth2-scopes.md",
+        "fastapi/docs/en/docs/advanced/behind-a-proxy.md",
+        "fastapi/docs/en/docs/advanced/security/oauth2-scopes.md",
+        "fastapi/docs/en/docs/tutorial/bigger-applications.md"
+      ],
+      "top_similarity": 0.6794660091400146,
+      "recall_at_5": null,
+      "mrr_at_5": null,
+      "hit_at_5": null
+    },
+    {
+      "query_id": "q055",
+      "question": "How do I configure CUDA drivers and PyTorch GPU memory pinning on Windows?",
+      "language": "en",
+      "category": "unanswerable",
+      "is_unanswerable": true,
+      "latency_ms": 19.158999999490334,
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/advanced/settings.md",
+        "fastapi/docs/en/docs/editor-support.md",
+        "fastapi/docs/en/docs/advanced/settings.md",
+        "fastapi/docs/en/docs/advanced/advanced-dependencies.md"
+      ],
+      "top_similarity": 0.6302362680435181,
+      "recall_at_5": null,
+      "mrr_at_5": null,
+      "hit_at_5": null
+    },
+    {
+      "query_id": "q056",
+      "question": "Làm thế nào để cấu hình Redux Toolkit store và slice trong ứng dụng React frontend?",
+      "language": "vi",
+      "category": "unanswerable",
+      "is_unanswerable": true,
+      "latency_ms": 18.17970000047353,
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/tutorial/frontend.md",
+        "fastapi/docs/en/docs/alternatives.md",
+        "fastapi/docs/en/docs/tutorial/security/first-steps.md",
+        "fastapi/docs/en/docs/how-to/conditional-openapi.md",
+        "fastapi/docs/en/docs/fastapi-cli.md"
+      ],
+      "top_similarity": 0.6578055620193481,
+      "recall_at_5": null,
+      "mrr_at_5": null,
+      "hit_at_5": null
+    },
+    {
+      "query_id": "q057",
+      "question": "Cách tạo Kubernetes StatefulSet với Persistent Volume Claim trong Helm chart?",
+      "language": "vi",
+      "category": "unanswerable",
+      "is_unanswerable": true,
+      "latency_ms": 16.791999998531537,
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/deployment/concepts.md",
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/deployment/docker.md",
+        "fastapi/docs/en/docs/project-generation.md"
+      ],
+      "top_similarity": 0.6648890972137451,
+      "recall_at_5": null,
+      "mrr_at_5": null,
+      "hit_at_5": null
+    },
+    {
+      "query_id": "q058",
+      "question": "Làm sao để viết smart contract Solidity bằng Hardhat và deploy lên Ethereum?",
+      "language": "vi",
+      "category": "unanswerable",
+      "is_unanswerable": true,
+      "latency_ms": 16.172999999980675,
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/deployment/index.md",
+        "fastapi/docs/en/docs/deployment/fastapicloud.md",
+        "fastapi/docs/en/docs/tutorial/first-steps.md",
+        "fastapi/docs/en/docs/async.md",
+        "fastapi/docs/en/docs/management.md"
+      ],
+      "top_similarity": 0.6066802144050598,
+      "recall_at_5": null,
+      "mrr_at_5": null,
+      "hit_at_5": null
+    },
+    {
+      "query_id": "q059",
+      "question": "Cách cấu hình Nginx reverse proxy với PHP-FPM trên hệ điều hành Ubuntu?",
+      "language": "vi",
+      "category": "unanswerable",
+      "is_unanswerable": true,
+      "latency_ms": 17.994000001635868,
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/behind-a-proxy.md",
+        "fastapi/docs/en/docs/project-generation.md",
+        "fastapi/docs/en/docs/advanced/settings.md",
+        "fastapi/docs/en/docs/deployment/https.md",
+        "fastapi/docs/en/docs/deployment/docker.md"
+      ],
+      "top_similarity": 0.6559971570968628,
+      "recall_at_5": null,
+      "mrr_at_5": null,
+      "hit_at_5": null
+    },
+    {
+      "query_id": "q060",
+      "question": "Làm thế nào để train model YOLOv8 nhận diện biển số xe bằng Ultralytics?",
+      "language": "vi",
+      "category": "unanswerable",
+      "is_unanswerable": true,
+      "latency_ms": 15.908700002910336,
+      "retrieved_sources": [
+        "fastapi/docs/en/docs/advanced/json-base64-bytes.md",
+        "fastapi/docs/en/docs/about/index.md",
+        "fastapi/docs/en/docs/how-to/migrate-from-pydantic-v1-to-pydantic-v2.md",
+        "fastapi/docs/en/docs/tutorial/index.md",
+        "fastapi/docs/en/docs/advanced/behind-a-proxy.md"
+      ],
+      "top_similarity": 0.5626482367515564,
+      "recall_at_5": null,
+      "mrr_at_5": null,
+      "hit_at_5": null
+    }
+  ]
+}
