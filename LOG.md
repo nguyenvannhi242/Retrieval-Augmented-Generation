@@ -183,4 +183,10 @@ Nhật ký ghi lại quá trình thiết kế, triển khai, kiểm thử và t�
   4. **Kiểm thử tự động (Unit & Integration Tests)**:
      - Tạo `tests/test_api.py` sử dụng `fastapi.testclient.TestClient` kiểm tra: `GET /`, `GET /health`, `POST /chat` (schema validation & latency metrics).
      - Toàn bộ test suite dự án đạt **19/19 tests passed** (100% passed).
+  5. **Hotfix & Tối ưu hóa Docker**:
+     - Phát hiện lỗi thiếu `import time` trong [generation/generator.py](file:///c:/Users/2/Desktop/WORKSPACE/RAG/generation/generator.py) khi đo latency trong `RAGPipeline.answer()`, dẫn đến lỗi 500 khi container nhận request chat.
+     - Đã bổ sung `import time` vào [generation/generator.py](file:///c:/Users/2/Desktop/WORKSPACE/RAG/generation/generator.py).
+     - Cập nhật [docker-compose.yml](file:///c:/Users/2/Desktop/WORKSPACE/RAG/docker-compose.yml) mount live code volumes (`./api:/app/api`, `./generation:/app/generation`, `./retrieval:/app/retrieval`, `./frontend:/app/frontend`) giúp cập nhật mã nguồn ngay lập tức mà không cần build lại image.
+     - Kiểm thử thành công request `POST /chat` trực tiếp tới Docker backend (Status 200 OK, trả về câu trả lời, nguồn trích dẫn và latency metrics đầy đủ).
+
 
