@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-10-13 00:48:19",
+  "top_k_ablation": {
+    "top_3": {
+      "k": 3,
+      "retrieval_recall_at_k": 81.67,
+      "answer_correctness_f1": 23.31,
+      "citation_precision": 66.67,
+      "citation_accuracy": 76.0,
+      "mean_context_chars": 1461.6,
+      "estimated_context_tokens": 365.4,
+      "mean_latency_ms": 719.7
+    },
+    "top_5": {
+      "k": 5,
+      "retrieval_recall_at_k": 85.67,
+      "answer_correctness_f1": 25.71,
+      "citation_precision": 69.93,
+      "citation_accuracy": 74.0,
+      "mean_context_chars": 2500.6,
+      "estimated_context_tokens": 625.1,
+      "mean_latency_ms": 845.6
+    },
+    "top_8": {
+      "k": 8,
+      "retrieval_recall_at_k": 91.0,
+      "answer_correctness_f1": 25.81,
+      "citation_precision": 54.04,
+      "citation_accuracy": 66.0,
+      "mean_context_chars": 3936.6,
+      "estimated_context_tokens": 984.1,
+      "mean_latency_ms": 981.2
+    }
+  },
+  "model_comparison": {
+    "gemma2:2b": {
+      "model": "gemma2:2b",
+      "overall_answer_f1": 24.66,
+      "english_answer_f1": 28.44,
+      "vietnamese_answer_f1": 18.98,
+      "citation_precision": 66.0,
+      "citation_recall": 64.33,
+      "citation_accuracy": 72.0,
+      "held_out_refusal_rate": 90.0,
+      "mean_tokens_per_second": 184.96,
+      "mean_end_to_end_latency_ms": 847.0
+    },
+    "qwen2.5:3b": {
+      "model": "qwen2.5:3b",
+      "overall_answer_f1": 17.94,
+      "english_answer_f1": 15.9,
+      "vietnamese_answer_f1": 21.01,
+      "citation_precision": 33.67,
+      "citation_recall": 37.0,
+      "citation_accuracy": 42.0,
+      "held_out_refusal_rate": 90.0,
+      "mean_tokens_per_second": 183.67,
+      "mean_end_to_end_latency_ms": 1802.6
+    }
+  }
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "query_id": "held_out_01",
+    "language": "en",
+    "category": "unanswerable",
+    "question": "How do I configure AWS CDK stack for DynamoDB global tables with auto-scaling?",
+    "answerable": false,
+    "reference_answer": "This topic is outside the FastAPI documentation."
+  },
+  {
+    "query_id": "held_out_02",
+    "language": "en",
+    "category": "unanswerable",
+    "question": "How to setup Apollo GraphQL client cache normalized persistence in React Native?",
+    "answerable": false,
+    "reference_answer": "This topic is outside the FastAPI documentation."
+  },
+  {
+    "query_id": "held_out_03",
+    "language": "en",
+    "category": "unanswerable",
+    "question": "How to configure Apache Spark structured streaming with checkpointing in Databricks?",
+    "answerable": false,
+    "reference_answer": "This topic is outside the FastAPI documentation."
+  },
+  {
+    "query_id": "held_out_04",
+    "language": "en",
+    "category": "unanswerable",
+    "question": "How do I write Ansible playbooks for zero-downtime Nginx reload on CentOS?",
+    "answerable": false,
+    "reference_answer": "This topic is outside the FastAPI documentation."
+  },
+  {
+    "query_id": "held_out_05",
+    "language": "en",
+    "category": "unanswerable",
+    "question": "How to configure Cassandra keyspace replication strategy with NetworkTopologyStrategy?",
+    "answerable": false,
+    "reference_answer": "This topic is outside the FastAPI documentation."
+  },
+  {
+    "query_id": "held_out_06",
+    "language": "en",
+    "category": "unanswerable",
+    "question": "How do I setup Next.js 14 Server Actions with optimistic UI updates?",
+    "answerable": false,
+    "reference_answer": "This topic is outside the FastAPI documentation."
+  },
+  {
+    "query_id": "held_out_07",
+    "language": "en",
+    "category": "unanswerable",
+    "question": "How to configure Envoy proxy rate limiting service with gRPC?",
+    "answerable": false,
+    "reference_answer": "This topic is outside the FastAPI documentation."
+  },
+  {
+    "query_id": "held_out_08",
+    "language": "en",
+    "category": "unanswerable",
+    "question": "How to setup OpenTelemetry collector trace exporter to Jaeger with sampling?",
+    "answerable": false,
+    "reference_answer": "This topic is outside the FastAPI documentation."
+  },
+  {
+    "query_id": "held_out_09",
+    "language": "en",
+    "category": "unanswerable",
+    "question": "How do I write Terraform modules for GCP Cloud Run multi-region deployment?",
+    "answerable": false,
+    "reference_answer": "This topic is outside the FastAPI documentation."
+  },
+  {
+    "query_id": "held_out_10",
+    "language": "en",
+    "category": "unanswerable",
+    "question": "How to configure RabbitMQ dead letter exchange and TTL in NestJS microservices?",
+    "answerable": false,
+    "reference_answer": "This topic is outside the FastAPI documentation."
+  },
+  {
+    "query_id": "held_out_11",
+    "language": "vi",
+    "category": "unanswerable",
+    "question": "Làm thế nào để cấu hình Vuex store module hóa và mapGetters trong Vue 3?",
+    "answerable": false,
+    "reference_answer": "Tài liệu FastAPI không hướng dẫn cấu hình Vuex trong Vue 3."
+  },
+  {
+    "query_id": "held_out_12",
+    "language": "vi",
+    "category": "unanswerable",
+    "question": "Cách thiết lập replication master-slave trong MySQL 8.0 trên Ubuntu?",
+    "answerable": false,
+    "reference_answer": "Cấu hình replication MySQL nằm ngoài phạm vi tài liệu FastAPI."
+  },
+  {
+    "query_id": "held_out_13",
+    "language": "vi",
+    "category": "unanswerable",
+    "question": "Làm sao để viết GitHub Actions workflow tự động deploy lên Amazon ECS Fargate?",
+    "answerable": false,
+    "reference_answer": "Tài liệu FastAPI không bao gồm CI/CD workflow cho ECS Fargate."
+  },
+  {
+    "query_id": "held_out_14",
+    "language": "vi",
+    "category": "unanswerable",
+    "question": "Hướng dẫn cấu hình Redis Cluster với 3 master và 3 replica trên CentOS?",
+    "answerable": false,
+    "reference_answer": "Quản trị cụm Redis Cluster không thuộc tài liệu FastAPI."
+  },
+  {
+    "query_id": "held_out_15",
+    "language": "vi",
+    "category": "unanswerable",
+    "question": "Cách tạo migration và foreign key constraints bằng Prisma ORM trong Node.js?",
+    "answerable": false,
+    "reference_answer": "Prisma ORM trong Node.js nằm ngoài tài liệu FastAPI."
+  },
+  {
+    "query_id": "held_out_16",
+    "language": "vi",
+    "category": "unanswerable",
+    "question": "Làm thế nào để setup TailwindCSS JIT mode với Vite trong project SvelteKit?",
+    "answerable": false,
+    "reference_answer": "SvelteKit và TailwindCSS không thuộc phạm vi tài liệu FastAPI."
+  },
+  {
+    "query_id": "held_out_17",
+    "language": "vi",
+    "category": "unanswerable",
+    "question": "Cách viết custom middleware log request latency trong Go Gin framework?",
+    "answerable": false,
+    "reference_answer": "Go Gin framework không thuộc tài liệu FastAPI."
+  },
+  {
+    "query_id": "held_out_18",
+    "language": "vi",
+    "category": "unanswerable",
+    "question": "Làm sao để cấu hình Kafka Connect JDBC Source connector kéo dữ liệu từ PostgreSQL?",
+    "answerable": false,
+    "reference_answer": "Kafka Connect nằm ngoài phạm vi tài liệu FastAPI."
+  },
+  {
+    "query_id": "held_out_19",
+    "language": "vi",
+    "category": "unanswerable",
+    "question": "Cách thiết lập auto-scaling group và target tracking policy trên AWS EC2?",
+    "answerable": false,
+    "reference_answer": "Cấu hình AWS EC2 auto-scaling không thuộc tài liệu FastAPI."
+  },
+  {
+    "query_id": "held_out_20",
+    "language": "vi",
+    "category": "unanswerable",
+    "question": "Hướng dẫn deploy microservices bằng Istio service mesh trên Google Kubernetes Engine?",
+    "answerable": false,
+    "reference_answer": "Istio service mesh trên GKE nằm ngoài tài liệu FastAPI."
+  }
+]

@@ -1,0 +1,199 @@
+{
+  "held_out_unanswerable_n": 20,
+  "held_out_overall_refusal_rate": 95.0,
+  "held_out_refusal_95_ci": [
+    85.0,
+    100.0
+  ],
+  "held_out_english_refusal_rate": 90.0,
+  "held_out_vietnamese_refusal_rate": 100.0,
+  "answerable_evaluated_n": 50,
+  "over_refusal_count": 6,
+  "over_refusal_rate": 12.0,
+  "detailed_held_out": [
+    {
+      "query_id": "held_out_01",
+      "language": "en",
+      "question": "How do I configure AWS CDK stack for DynamoDB global tables with auto-scaling?",
+      "answer": "The provided documentation does not contain information on how to configure AWS CDK stack for DynamoDB global tables with auto-scaling. [S1] [S2] [S3] [S4] [S5]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_02",
+      "language": "en",
+      "question": "How to setup Apollo GraphQL client cache normalized persistence in React Native?",
+      "answer": "The provided FastAPI documentation does not contain information on how to setup Apollo GraphQL client cache normalized persistence in React Native. [S3]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_03",
+      "language": "en",
+      "question": "How to configure Apache Spark structured streaming with checkpointing in Databricks?",
+      "answer": "The provided FastAPI documentation does not contain information on configuring Apache Spark structured streaming with checkpointing in Databricks. [S1] [S2] [S3] [S4] [S5]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_04",
+      "language": "en",
+      "question": "How do I write Ansible playbooks for zero-downtime Nginx reload on CentOS?",
+      "answer": "The provided documentation does not contain information on how to write Ansible playbooks for zero-downtime Nginx reload on CentOS. [S4]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_05",
+      "language": "en",
+      "question": "How to configure Cassandra keyspace replication strategy with NetworkTopologyStrategy?",
+      "answer": "The provided documentation does not contain information on how to configure Cassandra keyspace replication strategy with NetworkTopologyStrategy. [S4]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_06",
+      "language": "en",
+      "question": "How do I setup Next.js 14 Server Actions with optimistic UI updates?",
+      "answer": "The provided documentation does not contain information on how to setup Next.js 14 Server Actions with optimistic UI updates. [S1] [S2] [S3] [S4] [S5]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_07",
+      "language": "en",
+      "question": "How to configure Envoy proxy rate limiting service with gRPC?",
+      "answer": "The provided documentation does not contain information on how to configure Envoy proxy rate limiting service with gRPC. [S1]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_08",
+      "language": "en",
+      "question": "How to setup OpenTelemetry collector trace exporter to Jaeger with sampling?",
+      "answer": "To set up the OpenTelemetry collector trace exporter to Jaeger with sampling, you need to configure the exporter in your application.  \n\nHere's a general outline of the process:\n\n1. **Configure the OpenTelemetry Collector:**  You'll need to configure the OpenTelemetry Collector to send traces to Jaeger. This typically involves setting up a Jaeger endpoint and configuring the collector to use it. \n2. **Configure Sampling:**  You can configure sampling to control the percentage of traces sent to Jaeger. This is done by setting the `sampling_rate` parameter in the OpenTelemetry exporter configuration. \n3. **Enable the Exporter:**  Enable the OpenTelemetry exporter for Jaeger in your application. \n\n**Note:** The provided documentation does not contain specific instructions on configuring the OpenTelemetry collector to Jaeger with sampling. \n\n[S1] \n[S2] \n[S3] \n[S4] \n[S5]",
+      "refused": false
+    },
+    {
+      "query_id": "held_out_09",
+      "language": "en",
+      "question": "How do I write Terraform modules for GCP Cloud Run multi-region deployment?",
+      "answer": "The provided documentation focuses on FastAPI deployment concepts using containers like Docker and Kubernetes. It does not contain information on writing Terraform modules for GCP Cloud Run multi-region deployment. \n\n[S1] [S2] [S3] [S4] [S5]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_10",
+      "language": "en",
+      "question": "How to configure RabbitMQ dead letter exchange and TTL in NestJS microservices?",
+      "answer": "The provided documentation does not contain information on how to configure RabbitMQ dead letter exchanges and TTL in NestJS microservices. [S1] [S2] [S3] [S4] [S5]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_11",
+      "language": "vi",
+      "question": "Làm thế nào để cấu hình Vuex store module hóa và mapGetters trong Vue 3?",
+      "answer": "The provided documentation does not contain information on how to configure Vuex store module and mapGetters in Vue 3. [S1]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_12",
+      "language": "vi",
+      "question": "Cách thiết lập replication master-slave trong MySQL 8.0 trên Ubuntu?",
+      "answer": "The provided documentation does not contain information on how to set up replication master-slave in MySQL 8.0. [S1]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_13",
+      "language": "vi",
+      "question": "Làm sao để viết GitHub Actions workflow tự động deploy lên Amazon ECS Fargate?",
+      "answer": "The provided documentation does not contain information on how to write a GitHub Actions workflow to automatically deploy to Amazon ECS Fargate. [S1] [S2] [S3] [S4] [S5]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_14",
+      "language": "vi",
+      "question": "Hướng dẫn cấu hình Redis Cluster với 3 master và 3 replica trên CentOS?",
+      "answer": "Tài liệu FastAPI được cung cấp không chứa thông tin về câu hỏi này.",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_15",
+      "language": "vi",
+      "question": "Cách tạo migration và foreign key constraints bằng Prisma ORM trong Node.js?",
+      "answer": "The provided documentation does not contain information on how to create migration and foreign key constraints using Prisma ORM in Node.js. [S1]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_16",
+      "language": "vi",
+      "question": "Làm thế nào để setup TailwindCSS JIT mode với Vite trong project SvelteKit?",
+      "answer": "The provided documentation does not contain information on how to set up TailwindCSS JIT mode with Vite in a SvelteKit project. [S4]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_17",
+      "language": "vi",
+      "question": "Cách viết custom middleware log request latency trong Go Gin framework?",
+      "answer": "The provided documentation does not contain information on how to write custom middleware to log request latency in the Go Gin framework. [S1]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_18",
+      "language": "vi",
+      "question": "Làm sao để cấu hình Kafka Connect JDBC Source connector kéo dữ liệu từ PostgreSQL?",
+      "answer": "The provided documentation does not contain information on how to configure Kafka Connect JDBC Source connector to pull data from PostgreSQL. [S5] mentions that you can use any database supported by SQLAlchemy, but it does not provide specific instructions on how to configure Kafka Connect JDBC Source connector for PostgreSQL.",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_19",
+      "language": "vi",
+      "question": "Cách thiết lập auto-scaling group và target tracking policy trên AWS EC2?",
+      "answer": "The provided documentation does not contain information on how to set up auto-scaling groups and target tracking policies on AWS EC2. [S1]",
+      "refused": true
+    },
+    {
+      "query_id": "held_out_20",
+      "language": "vi",
+      "question": "Hướng dẫn deploy microservices bằng Istio service mesh trên Google Kubernetes Engine?",
+      "answer": "The provided documentation does not contain information on how to deploy microservices using Istio service mesh on Google Kubernetes Engine. [S5]",
+      "refused": true
+    }
+  ],
+  "falsely_refused_queries": [
+    {
+      "query_id": "q001",
+      "language": "en",
+      "question": "What is the difference between concurrency and parallelism in FastAPI async?",
+      "answer": "The provided documentation explains that \"concurrency\" and \"parallelism\" are both related to \"different things happening more or less at the same time\".  However, the documentation does not provide a detailed explanation of the difference between concurrency and parallelism in FastAPI's async context. \n\n[S1] \n[S2] \n[S3] \n[S4] \n[S5]",
+      "falsely_refused": true
+    },
+    {
+      "query_id": "q020",
+      "language": "en",
+      "question": "How to handle WebSockets connections for real-time messaging in FastAPI?",
+      "answer": "The provided documentation focuses on the basics of WebSockets in FastAPI, including how to create a WebSocket connection and handle disconnections. It does not provide detailed instructions on how to implement real-time messaging using WebSockets. \n\n[S1] [S2] [S3] [S4] [S5]",
+      "falsely_refused": true
+    },
+    {
+      "query_id": "q042",
+      "language": "vi",
+      "question": "Làm sao để giải phóng tài nguyên cơ sở dữ liệu bằng dependency có chứa yield?",
+      "answer": "The provided documentation does not contain information on how to release database resources using dependencies with `yield`. [S1], [S2], [S3], [S4], [S5]",
+      "falsely_refused": true
+    },
+    {
+      "query_id": "q044",
+      "language": "vi",
+      "question": "Làm thế nào để cấu trúc dự án lớn bằng cách chia nhiều APIRouter con?",
+      "answer": "The provided documentation does not contain information on how to structure a large project using multiple APIRouter. [S1] [S2] [S3] [S4] [S5]",
+      "falsely_refused": true
+    },
+    {
+      "query_id": "q047",
+      "language": "vi",
+      "question": "Cách nhận dữ liệu form thông qua Form thay vì JSON trong FastAPI?",
+      "answer": "The provided documentation focuses on FastAPI's features and functionalities, including data conversion, path parameters, request files, and security. It does not contain information on how to receive form data in FastAPI. \n\n[S4]",
+      "falsely_refused": true
+    },
+    {
+      "query_id": "q050",
+      "language": "vi",
+      "question": "Cách quản lý cấu hình và biến môi trường bằng BaseSettings trong FastAPI?",
+      "answer": "The provided documentation does not contain information on how to manage configuration and environment variables using BaseSettings in FastAPI. [S1]",
+      "falsely_refused": true
+    }
+  ]
+}

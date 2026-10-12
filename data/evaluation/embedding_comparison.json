@@ -1,0 +1,63 @@
+{
+  "comparison_timestamp": "2026-10-12 20:11:05",
+  "bge_small_en": {
+    "model_name": "BAAI/bge-small-en-v1.5",
+    "overall_answerable": {
+      "count": 50,
+      "answerable_count": 50,
+      "recall_at_5": 0.8567,
+      "mrr_at_5": 0.789,
+      "hit_rate_at_5": 0.92,
+      "mean_latency_ms": 18.47
+    },
+    "english_answerable": {
+      "count": 30,
+      "answerable_count": 30,
+      "recall_at_5": 0.8944,
+      "mrr_at_5": 0.8844,
+      "hit_rate_at_5": 0.9667,
+      "mean_latency_ms": 17.56
+    },
+    "vietnamese_answerable": {
+      "count": 20,
+      "answerable_count": 20,
+      "recall_at_5": 0.8,
+      "mrr_at_5": 0.6458,
+      "hit_rate_at_5": 0.85,
+      "mean_latency_ms": 19.84
+    },
+    "unanswerable_mean_similarity": 0.6419,
+    "unanswerable_max_similarity": 0.7047,
+    "corpus_encode_time_sec": 51.71
+  },
+  "multilingual_e5_small": {
+    "model_name": "intfloat/multilingual-e5-small",
+    "overall_answerable": {
+      "count": 50,
+      "answerable_count": 50,
+      "recall_at_5": 0.8833,
+      "mrr_at_5": 0.8033,
+      "hit_rate_at_5": 0.94,
+      "mean_latency_ms": 14.72
+    },
+    "english_answerable": {
+      "count": 30,
+      "answerable_count": 30,
+      "recall_at_5": 0.9222,
+      "mrr_at_5": 0.8056,
+      "hit_rate_at_5": 1.0,
+      "mean_latency_ms": 14.53
+    },
+    "vietnamese_answerable": {
+      "count": 20,
+      "answerable_count": 20,
+      "recall_at_5": 0.825,
+      "mrr_at_5": 0.8,
+      "hit_rate_at_5": 0.85,
+      "mean_latency_ms": 15.0
+    },
+    "unanswerable_mean_similarity": 0.8394,
+    "unanswerable_max_similarity": 0.8642,
+    "corpus_encode_time_sec": 47.56
+  }
+}

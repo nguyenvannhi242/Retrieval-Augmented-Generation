@@ -1,0 +1,35 @@
+[
+  {
+    "chunk_size": 400,
+    "chunk_overlap": 60,
+    "total_chunks": 2655,
+    "mean_length_chars": 286.6,
+    "estimated_tokens": 71.6,
+    "broken_code_blocks": 251,
+    "broken_code_block_rate": 9.45,
+    "recall_at_5": 0.8467,
+    "hit_rate_at_5": 0.92
+  },
+  {
+    "chunk_size": 750,
+    "chunk_overlap": 100,
+    "total_chunks": 1591,
+    "mean_length_chars": 480.4,
+    "estimated_tokens": 120.1,
+    "broken_code_blocks": 125,
+    "broken_code_block_rate": 7.86,
+    "recall_at_5": 0.8567,
+    "hit_rate_at_5": 0.92
+  },
+  {
+    "chunk_size": 1200,
+    "chunk_overlap": 150,
+    "total_chunks": 1259,
+    "mean_length_chars": 605.0,
+    "estimated_tokens": 151.2,
+    "broken_code_blocks": 64,
+    "broken_code_block_rate": 5.08,
+    "recall_at_5": 0.8967,
+    "hit_rate_at_5": 0.96
+  }
+]

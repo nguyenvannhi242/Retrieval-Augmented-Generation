@@ -67,6 +67,9 @@ class RAGAnswer:
     retrieval_count: int
     retrieval_latency_ms: float = 0.0
     generation_latency_ms: float = 0.0
+    eval_count: int = 0
+    eval_duration_ms: float = 0.0
+    tokens_per_second: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -77,6 +80,9 @@ class RAGAnswer:
             "retrieval_latency_ms": self.retrieval_latency_ms,
             "generation_latency_ms": self.generation_latency_ms,
             "total_latency_ms": round(self.retrieval_latency_ms + self.generation_latency_ms, 2),
+            "eval_count": self.eval_count,
+            "eval_duration_ms": self.eval_duration_ms,
+            "tokens_per_second": self.tokens_per_second,
             "cited_sources": [s.to_dict() for s in self.cited_sources],
             "all_retrieved_sources": self.all_retrieved_sources,
             "hallucinated_citations": self.hallucinated_citations,
@@ -127,6 +133,60 @@ def validate_citations(
     return cited_sources, hallucinated
 
 
+def generate_answer_with_meta(
+    question: str,
+    retrieved_chunks: List[Dict[str, Any]],
+    model: str = DEFAULT_MODEL,
+    system_prompt: str = SYSTEM_PROMPT,
+) -> tuple[str, Dict[str, Any]]:
+    """Generates an answer using Ollama and returns both the text and execution metadata."""
+    if not retrieved_chunks:
+        return "I could not find relevant documentation to answer this question.", {}
+
+    context = format_context_from_chunks(retrieved_chunks)
+    user_content = build_user_prompt(question, context)
+
+    options = {"temperature": 0.0, "repeat_penalty": 1.1, "num_predict": 384}
+
+    try:
+        response = ollama.chat(
+            model=model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_content},
+            ],
+            options=options,
+        )
+    except Exception as exc:
+        logger.warning(f"Ollama inference error ({exc}), retrying with repeat_penalty=1.25...")
+        try:
+            options["repeat_penalty"] = 1.25
+            response = ollama.chat(
+                model=model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_content},
+                ],
+                options=options,
+            )
+        except Exception as exc2:
+            logger.error(f"Ollama generation fallback failed: {exc2}")
+            return "I could not generate an answer due to an inference error.", {}
+
+    content = response.get("message", {}).get("content", "").strip()
+    eval_count = response.get("eval_count", 0)
+    eval_dur_ns = response.get("eval_duration", 0)
+    eval_dur_ms = round(eval_dur_ns / 1e6, 2) if eval_dur_ns else 0.0
+    tok_sec = round(eval_count / (eval_dur_ns / 1e9), 2) if (eval_count and eval_dur_ns) else 0.0
+
+    meta = {
+        "eval_count": eval_count,
+        "eval_duration_ms": eval_dur_ms,
+        "tokens_per_second": tok_sec,
+    }
+    return content, meta
+
+
 def generate_answer(
     question: str,
     retrieved_chunks: List[Dict[str, Any]],
@@ -134,22 +194,13 @@ def generate_answer(
     system_prompt: str = SYSTEM_PROMPT,
 ) -> str:
     """Generates an answer using local LLM via Ollama based on documentation context."""
-    if not retrieved_chunks:
-        return "I could not find relevant documentation to answer this question."
-
-    context = format_context_from_chunks(retrieved_chunks)
-    user_content = build_user_prompt(question, context)
-
-    response = ollama.chat(
+    answer, _ = generate_answer_with_meta(
+        question=question,
+        retrieved_chunks=retrieved_chunks,
         model=model,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_content},
-        ],
-        options={"temperature": 0.2, "num_predict": 384},
+        system_prompt=system_prompt,
     )
-
-    return response["message"]["content"].strip()
+    return answer
 
 
 class RAGPipeline:
@@ -178,9 +229,9 @@ class RAGPipeline:
         retrieval_ms = round((time.perf_counter() - t_retrieval_start) * 1000.0, 2)
         chunks_data = [hit.to_dict() for hit in search_hits]
 
-        # 2. Generate answer with timing
+        # 2. Generate answer with timing and token stats
         t_gen_start = time.perf_counter()
-        answer_text = generate_answer(
+        answer_text, meta = generate_answer_with_meta(
             question=question,
             retrieved_chunks=chunks_data,
             model=active_model,
@@ -200,6 +251,9 @@ class RAGPipeline:
             retrieval_count=len(chunks_data),
             retrieval_latency_ms=retrieval_ms,
             generation_latency_ms=generation_ms,
+            eval_count=meta.get("eval_count", 0),
+            eval_duration_ms=meta.get("eval_duration_ms", 0.0),
+            tokens_per_second=meta.get("tokens_per_second", 0.0),
         )
 
 

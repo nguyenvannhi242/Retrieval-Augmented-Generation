@@ -77,16 +77,24 @@ def compute_faithfulness(
             "does not mention",
             "does not contain",
             "does not provide",
+            "doesn't provide",
+            "doesn't contain",
+            "doesn't mention",
+            "doesn't offer",
+            "does not offer",
             "outside",
             "insufficient",
             "could not find",
             "not documented",
+            "cannot answer",
             "không có",
             "không được đề cập",
             "nằm ngoài",
             "chưa có thông tin",
             "không tìm thấy",
             "không hỗ trợ",
+            "không chứa thông tin",
+            "không thể trả lời",
         ]
         return 1.0 if any(m in answer_lower for m in refusal_markers) else 0.0
 
@@ -116,7 +124,7 @@ def generate_no_rag_answer(question: str, model: str = "gemma2:2b") -> str:
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": question},
             ],
-            options={"temperature": 0.2, "num_predict": 384},
+            options={"temperature": 0.0, "num_predict": 384},
         )
         return response["message"]["content"].strip()
     except Exception as e:
@@ -265,10 +273,15 @@ def compute_metrics_summary(results: List[Dict[str, Any]]) -> Dict[str, Any]:
     no_rag_corr_mean = round(statistics.mean(no_rag_correctness_scores), 4) if no_rag_correctness_scores else 0.0
     uplift = round(rag_corr_mean - no_rag_corr_mean, 4)
 
+    rag_refusal = round(statistics.mean([r["faithfulness"] for r in unanswerable_res]), 4) if unanswerable_res else 0.0
+    no_rag_refusal = round(statistics.mean([r["no_rag_correctness"] for r in unanswerable_res]), 4) if unanswerable_res else 0.0
+
     return {
         "total_evaluated": len(results),
         "answerable_count": len(answerable_res),
         "unanswerable_count": len(unanswerable_res),
+        "refusal_rate_rag": rag_refusal,
+        "refusal_rate_no_rag": no_rag_refusal,
         "retrieval_recall_at_5": round(statistics.mean(recalls), 4) if recalls else 0.0,
         "hit_rate_at_5": round(statistics.mean(hits), 4) if hits else 0.0,
         "citation_precision": round(statistics.mean(citation_precs), 4) if citation_precs else 0.0,
@@ -340,9 +353,30 @@ def run_e2e_benchmark(
     en_summary = compute_metrics_summary(en_results)
     vi_summary = compute_metrics_summary(vi_results)
 
+    # Try resolving git commit hash
+    git_hash = "unknown"
+    try:
+        import subprocess
+        git_hash = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], text=True).strip()
+    except Exception:
+        pass
+
+    timestamp_str = time.strftime("%Y-%m-%d %H:%M:%S")
+    date_compact = time.strftime("%Y%m%d")
+
     final_report = {
+        "metadata": {
+            "evaluation_timestamp": timestamp_str,
+            "git_commit": git_hash,
+            "llm_model": model,
+            "temperature": 0.0,
+            "top_k": 5,
+            "chunk_size": 750,
+            "chunk_overlap": 100,
+            "embedding_model": "BAAI/bge-small-en-v1.5",
+        },
         "model": model,
-        "evaluation_timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "evaluation_timestamp": timestamp_str,
         "total_queries": len(results),
         "overall_summary": overall_summary,
         "english_summary": en_summary,
@@ -350,11 +384,17 @@ def run_e2e_benchmark(
         "detailed_results": results,
     }
 
-    # Save to JSON
+    # Save to canonical JSON
     output_json.parent.mkdir(parents=True, exist_ok=True)
     with open(output_json, "w", encoding="utf-8") as f:
         json.dump(final_report, f, indent=2, ensure_ascii=False)
     logger.info(f"Saved evaluation JSON report to: {output_json}")
+
+    # Also save to versioned timestamped JSON file for reproducibility
+    versioned_json = output_json.parent / f"rag_e2e_results_{date_compact}_git{git_hash}.json"
+    with open(versioned_json, "w", encoding="utf-8") as f:
+        json.dump(final_report, f, indent=2, ensure_ascii=False)
+    logger.info(f"Saved versioned evaluation JSON report to: {versioned_json}")
 
     # Save to CSV
     output_csv.parent.mkdir(parents=True, exist_ok=True)
