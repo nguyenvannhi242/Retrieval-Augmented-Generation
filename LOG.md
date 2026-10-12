@@ -342,6 +342,37 @@ Chạy đo lường đầu cuối (End-to-End RAG) với mô hình `gemma2:2b` t
 - **Cấu hình tham số sinh cố định**: Thiết lập `temperature = 0.0`, `repeat_penalty = 1.1`, `num_predict = 384` để đảm bảo kết quả suy luận mang tính xác định và loại trừ hoàn toàn lỗi lặp token.
 - **Lưu trữ có phiên bản**: Toàn bộ kết quả thực nghiệm mới được lưu trữ tại `data/evaluation/k_and_models_evaluation.json`, `data/evaluation/refusal_evaluation_results.json`, và `data/evaluation/chunk_ablation_results.json`.
 
+---
 
+## 📌 Phase 9: Rà soát Mã nguồn, Sửa lỗi & Hoàn thiện Dự án
 
+- **Trạng thái**: Hoàn thành (DONE)
+- **Thời gian**: 2026-10-13
+- **Mục tiêu**: Rà soát toàn bộ mã nguồn, phát hiện và sửa lỗi, đảm bảo dự án ổn định cho demo và phỏng vấn.
 
+### 1. Rà soát Toàn diện Mã nguồn (Code Review)
+
+- **Phạm vi**: Đọc và đánh giá toàn bộ các module: `ingestion/`, `retrieval/`, `generation/`, `api/`, `frontend/`, `evaluation/`, `tests/`, Dockerfiles, `docker-compose.yml`, `requirements.txt`.
+- **Kết quả tổng thể**: Dự án đạt yêu cầu demo ổn định, chất lượng mã nguồn tốt (type hints, docstrings, Pydantic schemas, error handling). Hệ thống evaluation và tài liệu kỹ thuật vượt trội so với mặt bằng chung đồ án sinh viên.
+- **Đánh giá theo module**:
+  - `ingestion/`: Xuất sắc — Sparse checkout, MkDocs anchor extraction, code-aware separators.
+  - `retrieval/`: Tốt — BGE query prefix, cosine→similarity, batch indexing.
+  - `generation/`: Tốt — Citation validation, retry logic, eval_count tracking.
+  - `api/`: Tốt — Lifespan singleton, health check đa dịch vụ, Pydantic v2 schemas.
+  - `frontend/`: Khá — Custom CSS, session state, sidebar config. Lưu ý code render bị lặp (DRY violation nhỏ).
+  - `evaluation/`: Xuất sắc — Ablation studies, kiểm định thống kê, held-out test set, AUROC.
+  - `tests/`: Tốt — 19 tests bao phủ ingestion, retrieval, generation, API, evaluation.
+
+### 2. Sửa lỗi: Double Retrieval trong `evaluate_e2e.py`
+
+- **Mô tả lỗi**: Hàm `evaluate_single_query()` gọi `pipeline.retriever.search()` riêng lẻ (lần 1) rồi gọi `pipeline.answer()` (lần 2 — bên trong `answer()` cũng thực hiện retrieval). Kết quả: retrieval thực thi **2 lần** cho mỗi câu hỏi, biến `chunks_data` từ lần gọi đầu bị thừa (không sử dụng), và `generation_ms` bao gồm cả thời gian retrieval lần 2 nên latency reporting bị inflate.
+- **Ảnh hưởng**: Chỉ ảnh hưởng đến **latency reporting** trong evaluation scripts. Các metrics chính (Recall@5, Token F1, Citation Precision/Accuracy) **không bị ảnh hưởng** vì chúng sử dụng `rag_result.all_retrieved_sources` từ lần gọi `pipeline.answer()`.
+- **Cách sửa**: Loại bỏ lần gọi `pipeline.retriever.search()` thừa, chỉ giữ lại `pipeline.answer()` duy nhất, và lấy `retrieval_latency_ms` / `generation_latency_ms` trực tiếp từ `RAGAnswer` object trả về.
+- **Dọn dẹp import**: Loại bỏ các import không còn sử dụng: `validate_citations`, `format_context_from_chunks`, `build_user_prompt`, `SearchResult`.
+
+### 3. Hoàn thiện Dự án
+
+- Toàn bộ pipeline RAG (Ingestion → Indexing → Retrieval → Generation → API → Frontend → Docker → Evaluation) đã hoàn thiện.
+- 19/19 bài kiểm tra tự động đã pass.
+- Tài liệu README.md và LOG.md đã cập nhật đầy đủ.
+- Dự án sẵn sàng cho demo và phỏng vấn.

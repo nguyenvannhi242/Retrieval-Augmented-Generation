@@ -23,8 +23,8 @@ if sys.stdout.encoding != "utf-8":
 
 import ollama
 
-from generation.generator import RAGPipeline, SourceCitation, validate_citations, format_context_from_chunks, build_user_prompt
-from retrieval.search import DocumentRetriever, SearchResult
+from generation.generator import RAGPipeline, SourceCitation
+from retrieval.search import DocumentRetriever
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
@@ -148,17 +148,13 @@ def evaluate_single_query(
     reference_answer = query_item.get("reference_answer", "")
     is_answerable = query_item.get("answerable", True)
 
-    # 1. Retrieval stage timing and execution
-    t_retrieval_start = time.perf_counter()
-    search_hits = pipeline.retriever.search(question, top_k=top_k)
-    retrieval_ms = (time.perf_counter() - t_retrieval_start) * 1000.0
-    chunks_data = [hit.to_dict() for hit in search_hits]
-
-    # 2. RAG Generation stage timing and execution
-    t_gen_start = time.perf_counter()
+    # Execute full RAG pipeline once (retrieval + generation)
     rag_result = pipeline.answer(question, top_k=top_k)
-    generation_ms = (time.perf_counter() - t_gen_start) * 1000.0
-    total_rag_latency_ms = retrieval_ms + generation_ms
+
+    # Use latency measurements from RAGPipeline.answer() directly
+    retrieval_ms = rag_result.retrieval_latency_ms
+    generation_ms = rag_result.generation_latency_ms
+    total_rag_latency_ms = round(retrieval_ms + generation_ms, 2)
 
     answer_text = rag_result.answer
     retrieved_chunks = rag_result.all_retrieved_sources
