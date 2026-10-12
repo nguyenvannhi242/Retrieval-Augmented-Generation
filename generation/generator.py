@@ -140,7 +140,7 @@ def generate_answer(
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_content},
         ],
-        options={"temperature": 0.2},
+        options={"temperature": 0.2, "num_predict": 384},
     )
 
     return response["message"]["content"].strip()
