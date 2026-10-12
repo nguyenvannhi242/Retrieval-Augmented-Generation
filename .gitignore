@@ -23,25 +23,27 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-
-# Virtual Environment
-.venv/
-venv/
-ENV/
+.pytest_cache/
 
 # Chroma / Vector Database data
 data/processed/chroma_db/
 .chroma/
 
+# Model weights and embeddings cache
+*.bin
+*.pt
+*.safetensors
+*.onnx
+hf_cache/
+.cache/
+models/
+
 # Raw cloned repos and docs
+fastapi/
 data/raw/fastapi_repo/
 data/raw/cpython_repo/
 data/raw/fastapi_docs/
 data/raw/_fastapi_clone_temp/
-
-# Cache & Hugging Face
-.cache/
-hf_cache/
 
 # IDE / OS
 .idea/

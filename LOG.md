@@ -151,7 +151,36 @@ Nhật ký ghi lại quá trình thiết kế, triển khai, kiểm thử và t�
   2. *Câu hỏi q026 ("How to declare body, path and query parameters all in the same endpoint function?")*:
      - **No-RAG**: Hướng dẫn dùng `request` object của Starlette/Flask.
      - **RAG**: Khẳng định FastAPI tự động phân giải từng tham số hàm, trích dẫn chuẩn `tutorial/body.md` và `tutorial/body-multiple-params.md`.
-  3. *Câu hỏi q051 & q056 (Unanswerable: Django ORM, Redux Toolkit)*:
-     - **No-RAG**: Trả lời tràn lan về Django và React Redux mà không nhận thức được phạm vi dự án.
-     - **RAG**: Phát hiện tài liệu không đề cập và thông báo từ chối chính xác (*"The provided documentation focuses on FastAPI... It does not cover Django/Redux..."*).
 - **Kết luận**: Khi được cấp tài liệu, Chatbot không chỉ trả lời đúng hơn về mặt kỹ thuật mà còn loại bỏ hoàn toàn hiện tượng "râu ông nọ cắm cằm bà kia" (bịa cú pháp Flask thay cho FastAPI) và kiểm soát được ranh giới kiến thức dự án.
+
+---
+
+## 📌 Phase 7: Xây dựng Backend FastAPI, Giao diện Streamlit & Đóng gói Docker Compose
+
+- **Trạng thái**: Hoàn thành (DONE)
+- **Thời gian**: 2026-10-12
+- **Thực hiện**:
+  1. **Backend FastAPI**:
+     - `api/schemas.py`: Định nghĩa Pydantic schemas cho `ChatRequest` (question, top_k, model), `ChatResponse` (answer, sources, retrieved_chunks, retrieval_latency_ms, generation_latency_ms, total_latency_ms), và `HealthResponse` (kiểm tra trạng thái ChromaDB và Ollama).
+     - `api/main.py`:
+       - Triển khai FastAPI application với CORS middleware.
+       - Tích hợp lifespan manager khởi tạo singleton `RAGPipeline` (load model BGE-small và kết nối ChromaDB 1 lần duy nhất khi khởi động).
+       - Cung cấp endpoint `GET /health` kiểm tra số lượng vectors trong ChromaDB (`fastapi_docs` collection) và danh sách model sẵn có của Ollama.
+       - Cung cấp endpoint `POST /chat` xử lý truy xuất ngữ cảnh và sinh câu trả lời, trả về định dạng chuẩn kèm các chỉ số latency thực tế.
+  2. **Frontend Streamlit**:
+     - `frontend/app.py`:
+       - Giao diện chat hiện đại, hỗ trợ tiếng Việt và tiếng Anh.
+       - Hiển thị badge thời gian phản hồi: *⚡ Retrieval Latency*, *🤖 Generation Latency*, *⏱️ Total Latency*.
+       - Thẻ hiển thị nguồn trích dẫn `[S1]`, `[S2]` kèm canonical link trực tiếp tới tài liệu FastAPI.
+       - Khối *Expander* tùy chọn xem chi tiết danh sách chunks đã truy xuất từ ChromaDB kèm điểm cosine similarity.
+       - Sidebar cấu hình linh hoạt: Health check indicator, thanh trượt điều chỉnh `top_k`, chọn model LLM, danh sách câu hỏi gợi ý và nút xóa lịch sử chat.
+  3. **Đóng gói Docker Compose**:
+     - `Dockerfile.api`: Python 3.11-slim container cho Backend FastAPI (port 8000).
+     - `Dockerfile.frontend`: Python 3.11-slim container cho Frontend Streamlit (port 8501).
+     - `docker-compose.yml`: Cấu hình dịch vụ đa container, kết nối backend tới Ollama trên host qua `host.docker.internal:11434`, mount volume dữ liệu `data/processed`, thiết lập healthcheck phụ thuộc giữa frontend và backend.
+     - `.gitignore`: Loại trừ triệt để model weights (`*.bin`, `*.safetensors`, `*.pt`), dữ liệu vector ChromaDB và repo nguồn clone thô để giữ repo Git gọn nhẹ.
+     - `README.md`: Hướng dẫn đầy đủ từ cài đặt Ollama, build index, chạy cục bộ cho tới triển khai qua `docker compose up --build`.
+  4. **Kiểm thử tự động (Unit & Integration Tests)**:
+     - Tạo `tests/test_api.py` sử dụng `fastapi.testclient.TestClient` kiểm tra: `GET /`, `GET /health`, `POST /chat` (schema validation & latency metrics).
+     - Toàn bộ test suite dự án đạt **19/19 tests passed** (100% passed).
+

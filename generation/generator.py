@@ -64,6 +64,8 @@ class RAGAnswer:
     cited_sources: List[SourceCitation]
     hallucinated_citations: List[str]
     retrieval_count: int
+    retrieval_latency_ms: float = 0.0
+    generation_latency_ms: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -71,6 +73,9 @@ class RAGAnswer:
             "answer": self.answer,
             "model": self.model,
             "retrieval_count": self.retrieval_count,
+            "retrieval_latency_ms": self.retrieval_latency_ms,
+            "generation_latency_ms": self.generation_latency_ms,
+            "total_latency_ms": round(self.retrieval_latency_ms + self.generation_latency_ms, 2),
             "cited_sources": [s.to_dict() for s in self.cited_sources],
             "all_retrieved_sources": self.all_retrieved_sources,
             "hallucinated_citations": self.hallucinated_citations,
@@ -166,16 +171,20 @@ class RAGPipeline:
         """Executes full RAG flow: retrieval -> context building -> LLM generation -> citation validation."""
         active_model = model or self.model
 
-        # 1. Retrieve top-k chunks
+        # 1. Retrieve top-k chunks with timing
+        t_retrieval_start = time.perf_counter()
         search_hits: List[SearchResult] = self.retriever.search(question, top_k=top_k)
+        retrieval_ms = round((time.perf_counter() - t_retrieval_start) * 1000.0, 2)
         chunks_data = [hit.to_dict() for hit in search_hits]
 
-        # 2. Generate answer
+        # 2. Generate answer with timing
+        t_gen_start = time.perf_counter()
         answer_text = generate_answer(
             question=question,
             retrieved_chunks=chunks_data,
             model=active_model,
         )
+        generation_ms = round((time.perf_counter() - t_gen_start) * 1000.0, 2)
 
         # 3. Validate citations
         cited_sources, hallucinated = validate_citations(answer_text, chunks_data)
@@ -188,6 +197,8 @@ class RAGPipeline:
             cited_sources=cited_sources,
             hallucinated_citations=hallucinated,
             retrieval_count=len(chunks_data),
+            retrieval_latency_ms=retrieval_ms,
+            generation_latency_ms=generation_ms,
         )
 
 

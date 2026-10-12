@@ -1,74 +1,147 @@
 # devdocs-rag: Chatbot Hỏi Đáp Tài Liệu Lập Trình (FastAPI, Python, Docker)
 
-Hệ thống RAG (Retrieval-Augmented Generation) cho phép người dùng hỏi bằng tiếng Việt, truy xuất tài liệu kỹ thuật chính thức và sinh câu trả lời kèm trích dẫn nguồn (source citations & URLs).
+Hệ thống RAG (Retrieval-Augmented Generation) cho phép người dùng hỏi bằng tiếng Việt hoặc tiếng Anh, tự động truy xuất ngữ cảnh chính xác từ tài liệu chính thức và sinh câu trả lời kèm **trích dẫn nguồn `[S1]`, liên kết canonical và đo lường thời gian thực**.
 
 ---
 
-## 🎯 Mục tiêu & Tính năng chính
+## 🎯 Tính năng nổi bật
 
-- **Ngôn ngữ người dùng**: Hỏi đáp bằng tiếng Việt tự nhiên (hỗ trợ cả thuật ngữ kỹ thuật tiếng Anh).
-- **Corpus nguồn**:
-  - **FastAPI Documentation** (nguồn chính): Hơn 100+ trang tài liệu chuẩn hóa từ repository chính thức của FastAPI.
-  - **Python Tutorial & Library Reference**: Bổ sung kiến thức nền tảng về Python async, type hints, typing.
-  - **Docker Documentation**: Kiến thức triển khai container hóa cho ứng dụng FastAPI.
-- **Chuẩn hóa Corpus**:
-  - Định dạng JSONL chuẩn (`data/processed/corpus.jsonl`).
-  - Mỗi chunk gồm: `chunk_id`, `text`, `source`, `title`, `url`, `license`.
-- **Vector Database**: ChromaDB (`data/processed/chroma_db/`).
-- **Embedding Model**: `BAAI/bge-small-en-v1.5` qua `sentence-transformers`.
-- **LLM**: Local model qua Ollama (`gemma-4-E2B` hoặc `gemma2:2b`/`llama3.2:3b`).
-- **Backend API**: FastAPI REST API (`/query`, `/health`, `/stats`).
-- **Frontend UI**: Streamlit dashboard trực quan, hiển thị câu trả lời và thẻ trích dẫn tài liệu tham khảo kèm liên kết.
-- **Đánh giá (Evaluation)**: Bộ câu hỏi kiểm thử, đo lường Recall@k, MRR và answer correctness.
-- **Triển khai**: Docker Compose.
+1. **Truy xuất ngữ nghĩa chính xác**:
+   - Sử dụng mô hình nhúng `BAAI/bge-small-en-v1.5` cùng cơ sở dữ liệu vector ChromaDB (1,591 chunks).
+   - Đo lường Retrieval Recall@5 đạt **85.67%**, Hit Rate@5 đạt **92.00%**.
+2. **Sinh câu trả lời tin cậy (Local LLM qua Ollama)**:
+   - Mô hình cục bộ `gemma2:2b` chạy offline, đảm bảo quyền riêng tư và tốc độ phản hồi cao (~1.0s).
+   - Tuân thủ quy tắc nghiêm ngặt: không bịa đặt API, chỉ trả lời dựa trên context, từ chối câu hỏi ngoài phạm vi.
+   - Trích dẫn nguồn `[S1]`, `[S2]` và tự động xác thực chống ảo giác trích dẫn (`hallucinated citations`).
+3. **Backend FastAPI chuẩn REST**:
+   - `POST /chat`: Nhận câu hỏi, trả lời, danh sách nguồn trích dẫn và số liệu latency chi tiết.
+   - `GET /health`: Giám sát sức khỏe kết nối của ChromaDB và Ollama.
+4. **Giao diện người dùng Streamlit**:
+   - Khung chat trực quan, hiển thị câu trả lời với định dạng markdown và cú pháp code rõ ràng.
+   - Hiển thị badge thời gian phản hồi: *⚡ Retrieval Latency*, *🤖 Generation Latency*, *⏱️ Total Latency*.
+   - Khối mở rộng (*Expander*) cho phép kiểm tra chi tiết các chunk đã truy xuất từ ChromaDB.
+5. **Đóng gói toàn diện với Docker Compose**:
+   - Tách biệt rõ ràng container Backend FastAPI (`port 8000`) và Frontend Streamlit (`port 8501`).
 
 ---
 
-## 📁 Cấu trúc thư mục
+## 📁 Cấu trúc Thư mục
 
 ```text
 devdocs-rag/
+├── api/                       # Backend FastAPI (main.py, schemas.py)
 ├── data/
-│   ├── raw/               # Tài liệu gốc (FastAPI markdown, Python docs)
-│   ├── processed/         # JSONL chuẩn hóa và ChromaDB vector storage
-│   └── evaluation/        # Bộ câu hỏi đánh giá benchmark
-├── ingestion/             # Crawler, parser, LangChain chunking và xuất JSONL
-├── retrieval/             # Semantic search, ChromaDB client, BGE-small embedding
-├── generation/            # RAG prompt, kết nối Ollama local LLM, trích dẫn nguồn
-├── evaluation/            # Đo lường Recall@k, MRR, độ chính xác
-├── api/                   # FastAPI backend server
-├── frontend/              # Streamlit web application
-├── tests/                 # Unit tests & integration tests
-├── docker-compose.yml     # Cấu hình triển khai hệ thống
-├── Dockerfile             # Dockerfile cho backend & frontend
-├── requirements.txt       # Danh sách thư viện Python
-├── LOG.md                 # Nhật ký phát triển chi tiết qua từng giai đoạn
+│   ├── raw/                   # Tài liệu markdown thô
+│   ├── processed/             # corpus.jsonl và thư mục lưu trữ ChromaDB
+│   └── evaluation/            # benchmark_queries.json, kết quả CSV & JSON
+├── frontend/                  # Giao diện Streamlit (app.py)
+├── generation/                # RAG prompts, Ollama generator, citation validator
+├── ingestion/                 # Bộ parser, LangChain chunking và xuất corpus JSONL
+├── retrieval/                 # ChromaDB indexer và công cụ tìm kiếm ngữ nghĩa
+├── tests/                     # Toàn bộ bộ kiểm thử tự động (pytest)
+├── Dockerfile.api             # Dockerfile cho backend FastAPI
+├── Dockerfile.frontend        # Dockerfile cho frontend Streamlit
+├── docker-compose.yml         # Cấu hình đa dịch vụ Docker Compose
+├── requirements.txt           # Danh sách thư viện phụ thuộc
+├── LOG.md                     # Nhật ký kỹ thuật chi tiết qua 7 giai đoạn
 └── README.md
 ```
 
 ---
 
-## 🚀 Hướng dẫn cài đặt & Chạy nhanh
+## 🛠️ Hướng dẫn Cài đặt & Khởi chạy Cục bộ
 
-### 1. Cài đặt môi trường
+> [!NOTE]
+> Nhằm giữ cho kho lưu trữ Git gọn nhẹ, **trọng số mô hình (LLM model weights)** và **cơ sở dữ liệu vector ChromaDB** không được lưu trong Git repository. Hãy làm theo các bước dưới đây để tải và khởi tạo chúng.
+
+### 1. Chuẩn bị môi trường Python & Cài đặt Thư viện
 ```bash
+# Khởi tạo virtual environment
 python -m venv .venv
-# Trên Windows:
+
+# Kích hoạt trên Windows:
 .\.venv\Scripts\Activate.ps1
-# Trên Linux/macOS:
+# Kích hoạt trên Linux / macOS:
 source .venv/bin/activate
 
+# Cài đặt các thư viện cần thiết
 pip install -r requirements.txt
 ```
 
-### 2. Thu thập và chuẩn hóa dữ liệu
+### 2. Cài đặt Ollama và Tải Mô hình LLM
+1. Tải và cài đặt Ollama từ [https://ollama.com](https://ollama.com).
+2. Mở terminal và tải mô hình:
+   ```bash
+   ollama run gemma2:2b
+   ```
+3. Đảm bảo dịch vụ Ollama đang hoạt động tại `http://localhost:11434`.
+
+### 3. Thu thập Dữ liệu & Khởi tạo Vector Database
 ```bash
-# Clone tài liệu FastAPI và parse thành corpus.jsonl
-python ingestion/fetch_docs.py
-python ingestion/chunk_and_index.py
+# Bước 1: Tải tài liệu tiếng Anh chính thức từ repo FastAPI
+python -m ingestion.fetch_docs
+
+# Bước 2: Phân đoạn (Chunking) bằng LangChain và xuất corpus.jsonl
+python -m ingestion.chunk_docs
+
+# Bước 3: Tạo vector embeddings và lập chỉ mục ChromaDB
+python -m retrieval.indexer
 ```
 
-### 3. Thử nghiệm tìm kiếm ngữ nghĩa
+### 4. Khởi chạy Ứng dụng Cục bộ
+
+#### Khởi chạy Backend FastAPI:
 ```bash
-python retrieval/search.py --query "Làm thế nào để khai báo query parameters trong FastAPI?"
+python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
+- API Documentation (Swagger UI): `http://localhost:8000/docs`
+- Health check: `http://localhost:8000/health`
+
+#### Khởi chạy Frontend Streamlit:
+```bash
+python -m streamlit run frontend/app.py --server.port 8501
+```
+- Mở trình duyệt tại: `http://localhost:8501`
+
+---
+
+## 🐳 Khởi chạy bằng Docker Compose
+
+Hệ thống cung cấp sẵn `docker-compose.yml` để đóng gói backend và frontend thành các container độc lập:
+
+```bash
+docker compose up --build -d
+```
+
+- **Frontend Streamlit**: `http://localhost:8501`
+- **Backend FastAPI**: `http://localhost:8000`
+- **Swagger Documentation**: `http://localhost:8000/docs`
+
+> [!TIP]
+> Khi chạy trong container, Backend được cấu hình tự động trỏ tới Ollama trên máy host thông qua `host.docker.internal:11434`.
+
+Để dừng các dịch vụ:
+```bash
+docker compose down
+```
+
+---
+
+## 📊 Đánh giá Benchmark & Kiểm thử
+
+### 1. Chạy Đánh giá Retrieval Baseline:
+```bash
+python -m evaluation.evaluate_retrieval
+```
+
+### 2. Chạy Đánh giá End-to-End RAG (với Ablation Study so sánh No-RAG):
+```bash
+python -m evaluation.evaluate_e2e
+```
+Kết quả được tự động ghi nhận vào [rag_e2e_results.json](file:///c:/Users/2/Desktop/WORKSPACE/RAG/data/evaluation/rag_e2e_results.json) và [rag_e2e_results.csv](file:///c:/Users/2/Desktop/WORKSPACE/RAG/data/evaluation/rag_e2e_results.csv).
+
+### 3. Chạy Toàn bộ Bộ Kiểm thử Tự động (Unit Tests):
+```bash
+pytest tests/ -v
+```
+*(Hiện có 15 bài kiểm tra tự động bao phủ ingestion, retrieval, generation và API endpoints).*
