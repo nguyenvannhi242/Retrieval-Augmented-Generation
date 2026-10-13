@@ -52,3 +52,6 @@ data/raw/_fastapi_clone_temp/
 *.swo
 .DS_Store
 Thumbs.db
+
+# Internal development log (not for remote)
+LOG.md
